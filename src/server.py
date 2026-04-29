@@ -23,7 +23,7 @@ else:
 mcp = FastMCP(
     name="realtime-voice-video-docs",
     version="1.0.0",
-    description="Live docs for realtime voice & video tech (Qwen, Xiaomi MiMo, LiveKit)",
+    instructions="Live documentation for realtime voice & video technologies: Qwen (Alibaba Cloud), Xiaomi MiMo, and LiveKit. 102 files covering TTS, STT, Realtime APIs, voice cloning, WebRTC, and agents.",
 )
 
 
