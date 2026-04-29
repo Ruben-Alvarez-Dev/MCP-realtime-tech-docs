@@ -34,7 +34,7 @@ mcp-realtime-tech-docs:
   name: mcp-realtime-tech-docs
   description: "Live docs for realtime voice & video (Qwen, Xiaomi MiMo, LiveKit)"
   display_name: "Voice & Video Docs MCP"
-  command: /Users/your-user/MCP-servers/MCP-realtime-tech-docs/.venv/bin/python3
+  command: $INSTALL_DIR   # from install.sh output/.venv/bin/python3
   args:
     - -m
     - src.server

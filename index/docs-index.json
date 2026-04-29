@@ -56,62 +56,6 @@
     "category": "root"
   },
   {
-    "path": "qwen/00-OVERVIEW.md",
-    "size": 5525,
-    "preview": "# Qwen Real-Time Ecosystem — Complete Guide  > Last updated: April 2026   > Source: Alibaba Cloud Model Studio (DashScope)  ## Table of Contents 1. [What is Qwen Real-Time?](#what-is-qwen-real-time) 2",
-    "product": "qwen",
-    "category": "root"
-  },
-  {
-    "path": "qwen/04-QWEN3-TTS.md",
-    "size": 5651,
-    "preview": "# Qwen3-TTS — Voice Design & Voice Cloning API  > Source: https://qwen.ai/blog?id=qwen3-tts-vc-voicedesign  ## Overview  Qwen3-TTS offers two powerful capabilities via the Qwen API: 1. **Voice Design",
-    "product": "qwen",
-    "category": "root"
-  },
-  {
-    "path": "qwen/05-CLIENT-SERVER-EVENTS.md",
-    "size": 3760,
-    "preview": "# Qwen Real-Time Client & Server Events Reference  > Source: https://www.alibabacloud.com/help/en/model-studio/client-events  ## Client Events (You Send)  ### session.update Configure the session. **S",
-    "product": "qwen",
-    "category": "root"
-  },
-  {
-    "path": "qwen/06-VOICES.md",
-    "size": 4253,
-    "preview": "# Qwen Real-Time Voice List  ## Qwen3.5-Omni-Realtime Voices (55 total)  ### Multilingual Voices (47) | Voice | Description | |---|---| | **Tina** | Warm milk tea — sweet and cozy, sharp when solving",
-    "product": "qwen",
-    "category": "root"
-  },
-  {
-    "path": "qwen/02-OFFLINE-HTTP-API.md",
-    "size": 4129,
-    "preview": "# Qwen-Omni Offline HTTP API  > Source: https://www.alibabacloud.com/help/en/model-studio/qwen-omni  ## Endpoint (OpenAI Compatible)  | Region | Base URL | |---|---| | International (Singapore) | `htt",
-    "product": "qwen",
-    "category": "root"
-  },
-  {
-    "path": "qwen/07-CODE-EXAMPLES.md",
-    "size": 7998,
-    "preview": "# Qwen Real-Time — Complete Code Examples  ## 1. VAD Mode Voice Call (Python + DashScope SDK)  ```python # Dependencies: dashscope >= 1.23.9, pyaudio import os, base64, time, pyaudio from dashscope.au",
-    "product": "qwen",
-    "category": "root"
-  },
-  {
-    "path": "qwen/03-QWEN35-OMNI-BLOG.md",
-    "size": 2625,
-    "preview": "# Qwen3.5-Omni Architecture & Benchmarks  > Source: https://qwen.ai/blog?id=qwen3.5-omni  ## Architecture: Thinker-Talker  Qwen3.5-Omni uses a **Thinker-Talker** architecture: - **Thinker** — Processe",
-    "product": "qwen",
-    "category": "root"
-  },
-  {
-    "path": "qwen/01-REALTIME-WEBSOCKET-API.md",
-    "size": 7980,
-    "preview": "# Qwen Real-Time WebSocket API — Complete Reference  > Source: https://www.alibabacloud.com/help/en/model-studio/realtime  ## Connection  ### WebSocket Endpoints | Region | URL | |---|---| | Internati",
-    "product": "qwen",
-    "category": "root"
-  },
-  {
     "path": "qwen/models/huggingface-clean.txt",
     "size": 5039,
     "preview": "Qwen (Qwen) Hugging Face Models Datasets Spaces Buckets new Docs Enterprise Pricing Log In Sign Up Qwen Team company https://qwen.ai/ alibaba_qwen QwenLM Activity Feed Follow 82,168 AI & ML interests",
@@ -420,13 +364,6 @@
     "category": "stt"
   },
   {
-    "path": "xiaomi-mimo/00-OVERVIEW.md",
-    "size": 6837,
-    "preview": "# Xiaomi MiMo Real-Time Ecosystem — Complete Guide  > Last updated: April 2026   > Source: Xiaomi MiMo Platform, GitHub, HuggingFace  ## Table of Contents 1. [MiMo Ecosystem Overview](#mimo-ecosystem-",
-    "product": "xiaomi-mimo",
-    "category": "root"
-  },
-  {
     "path": "xiaomi-mimo/quick-start.txt",
     "size": 4069,
     "preview": "Xiaomi MiMo-V2.5 Series Launches Public Beta! Token Plan users now enjoy preferential rate, 20% off off-peak calls, save up to 30% with monthly auto-renewal, and get a FULL RESET of your used Credits.",
@@ -437,55 +374,6 @@
     "path": "xiaomi-mimo/home.txt",
     "size": 4069,
     "preview": "Xiaomi MiMo-V2.5 Series Launches Public Beta! Token Plan users now enjoy preferential rate, 20% off off-peak calls, save up to 30% with monthly auto-renewal, and get a FULL RESET of your used Credits.",
-    "product": "xiaomi-mimo",
-    "category": "root"
-  },
-  {
-    "path": "xiaomi-mimo/07-CODE-EXAMPLES.md",
-    "size": 5277,
-    "preview": "# MiMo Complete Code Examples  ## 1. Basic Chat (Python — OpenAI SDK)  ```python from openai import OpenAI  # Standard pay-per-use client = OpenAI(     api_key=\"sk-xxx\",     base_url=\"https://api.xiao",
-    "product": "xiaomi-mimo",
-    "category": "root"
-  },
-  {
-    "path": "xiaomi-mimo/04-MIMO-V25-PRO.md",
-    "size": 1572,
-    "preview": "# MiMo-V2.5-Pro — Flagship Agent Model  > Source: https://mimo.xiaomi.com/mimo-v2-pro  ## Overview MiMo-V2.5-Pro is Xiaomi's flagship model built for real-world agentic workloads — coding, tool-use, a",
-    "product": "xiaomi-mimo",
-    "category": "root"
-  },
-  {
-    "path": "xiaomi-mimo/03-MIMO-V2-FLASH.md",
-    "size": 1792,
-    "preview": "# MiMo-V2-Flash — Efficient Reasoning Model  > Source: https://github.com/xiaomimimo/MiMo-V2-Flash  ## Overview 309B total / 15B active params MoE model. Hybrid attention + MTP for efficient reasoning",
-    "product": "xiaomi-mimo",
-    "category": "root"
-  },
-  {
-    "path": "xiaomi-mimo/01-API-REFERENCE.md",
-    "size": 6795,
-    "preview": "# MiMo API Complete Reference  > Source: https://platform.xiaomimimo.com/docs/api/chat/openai-api  ## Endpoints  ### Standard Pay-Per-Use ``` POST https://api.xiaomimimo.com/v1/chat/completions ```  #",
-    "product": "xiaomi-mimo",
-    "category": "root"
-  },
-  {
-    "path": "xiaomi-mimo/05-TOKEN-PLAN.md",
-    "size": 4121,
-    "preview": "# MiMo Token Plan — Complete Guide  > Source: Xiaomi MiMo Platform, Twitter/X announcements, community reports  ## What is the Token Plan?  The **MiMo Token Plan** is a subscription service that provi",
-    "product": "xiaomi-mimo",
-    "category": "root"
-  },
-  {
-    "path": "xiaomi-mimo/02-MIMO-V25-ARCHITECTURE.md",
-    "size": 4292,
-    "preview": "# MiMo-V2.5 Architecture — Technical Deep Dive  > Source: HuggingFace, Xiaomi MiMo Platform  ## Architecture Overview  MiMo-V2.5 is a **native omnimodal MoE model** built on MiMo-V2-Flash backbone wit",
-    "product": "xiaomi-mimo",
-    "category": "root"
-  },
-  {
-    "path": "xiaomi-mimo/06-MIMO-TTS.md",
-    "size": 1878,
-    "preview": "# MiMo TTS — Voice Synthesis Models  > Source: Xiaomi MiMo Platform, mimo.mi.com  ## Overview The MiMo-V2.5-TTS series provides voice synthesis capabilities built for the Agent era.  ---  ## Capabilit",
     "product": "xiaomi-mimo",
     "category": "root"
   },
