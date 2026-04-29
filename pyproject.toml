@@ -1,0 +1,20 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "mcp-realtime-tech-docs"
+version = "1.0.0"
+description = "MCP server: live documentation for realtime voice & video technologies (Qwen, Xiaomi MiMo, LiveKit)"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.10"
+dependencies = [
+    "fastmcp>=3.2.0",
+]
+
+[project.scripts]
+mcp-realtime-tech-docs = "src.server:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src"]

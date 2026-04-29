@@ -1,0 +1,173 @@
+Document Center
+ All Products 
+Search
+ Document Center 
+ Alibaba Cloud Model Studio 
+ User Guide (Models) 
+ Inference 
+ Speech synthesis 
+ Real-time speech synthesis - CosyVoice 
+all-products-head 
+ This Product 
+ This Product 
+ All Products 
+ Alibaba Cloud Model Studio:Real-time speech synthesis - CosyVoice 
+ Speech synthesis, also known as Text-to-Speech (TTS), learns the rhythm, intonation, and pronunciation patterns of a language, and generates human-like speech from text input. 
+ Core features 
+ Generates high-fidelity speech in real time with support for multiple languages, including Chinese and English. 
+ Offers two voice customization methods: voice cloning and voice design. 
+ Supports streaming input and output with low latency, ideal for real-time interactive scenarios. 
+ Allows adjustment of speech rate, pitch, volume, and bitrate for fine-grained control over voice output. 
+ Compatible with mainstream audio formats with output sample rates up to 48 kHz. 
+ Availability 
+ Supported models: 
+ International 
+ In the international deployment mode , access points and data storage are located in the Singapore region . Model inference computing resources are dynamically scheduled worldwide, excluding the Chinese mainland. 
+ When you invoke the following models, select the API key for the Singapore region. 
+ CosyVoice : cosyvoice-v3-plus, cosyvoice-v3-flash 
+ Chinese mainland 
+ In the Chinese mainland deployment mode , access points and data storage are located in the Beijing region . Model inference computing resources are limited to the Chinese mainland. 
+ When you invoke the following models, select an API key for the Beijing region: 
+ CosyVoice : cosyvoice-v3.5-plus, cosyvoice-v3.5-flash, cosyvoice-v3-plus, cosyvoice-v3-flash, cosyvoice-v2 
+ For more information, see the Model list . 
+ Model selection 
+ Scenario 
+ Recommended 
+ Reason 
+ Notes 
+ Voice customization for brand identity, exclusive voice, or extended system voices (based on text description) 
+ cosyvoice-v3.5-plus 
+ Supports voice design, allowing you to create customized voices from text descriptions without audio samples. Ideal for designing brand-exclusive voices from scratch. 
+ cosyvoice-v3.5-plus is available only in the Beijing region and does not support system voices. 
+ Voice customization for brand identity, exclusive voice, or extended system voices (based on audio samples) 
+ cosyvoice-v3.5-plus 
+ Supports voice cloning, enabling you to quickly clone voices from real audio samples to create human-like brand voiceprints with high fidelity and consistency. 
+ cosyvoice-v3.5-plus is available only in the Beijing region and does not support system voices. 
+ Intelligent customer service / Voice assistant 
+ cosyvoice-v3-flash, cosyvoice-v3.5-flash 
+ Lower cost than plus models with support for streaming interaction and emotional expression, delivering fast responses at an affordable price point. 
+ cosyvoice-v3.5-flash is available only in the Beijing region and does not support system voices. 
+ Regional dialect broadcasting 
+ cosyvoice-v3.5-plus 
+ Supports multiple Chinese dialects, such as Northeastern Mandarin and Minnan, making it ideal for localized content broadcasting. 
+ cosyvoice-v3.5-plus is available only in the Beijing region and does not support system voices. 
+ Educational applications (including formula reading) 
+ cosyvoice-v2, cosyvoice-v3-flash, cosyvoice-v3-plus 
+ Supports LaTeX formula-to-speech conversion, ideal for mathematics, physics, and chemistry instruction. 
+ cosyvoice-v2 and cosyvoice-v3-plus have higher costs ( $0.286706 per 10,000 characters ). 
+ Structured voice broadcasting (news/announcements) 
+ cosyvoice-v3-plus, cosyvoice-v3-flash, cosyvoice-v2 
+ Supports SSML for controlling speech rate, pauses, and pronunciation to enhance broadcast professionalism. 
+ Implement the SSML generation logic independently. This model does not support emotion settings. 
+ Precise speech-text alignment for scenarios such as caption generation, lesson playback, and dictation practice 
+ cosyvoice-v3-flash, cosyvoice-v3-plus, cosyvoice-v2 
+ Supports timestamp output to synchronize the synthesized speech with the original text. 
+ Manually enable the timestamp feature. 
+ Multilingual international products 
+ cosyvoice-v3-flash, cosyvoice-v3-plus 
+ Supports multiple languages. 
+ Capabilities vary by region and model. Before selecting a model, review the Compare models section. 
+ Getting started 
+ The following examples demonstrate how to invoke the API. For more code examples covering common scenarios, see GitHub . 
+ Get an API key and export the API key as an environment variable . If you use an SDK to make calls, install the DashScope SDK . 
+ CosyVoice 
+ Important 
+ cosyvoice-v3.5-plus and cosyvoice-v3.5-flash models are currently available only in the Beijing region and are designed specifically for voice design and voice cloning scenarios. They do not support system voices. Before using them for speech synthesis, use the CosyVoice voice cloning/design API to create your voice. Then, simply update the voice field in your code with your voice ID and specify the corresponding model in the model field. 
+ Use system voices 
+ The following example demonstrates how to perform speech synthesis using system voices. For more information, see the Voice list . 
+ Save synthesized audio to a file 
+ Python # coding=utf-8
+import os
+import dashscope
+from dashscope.audio.tts_v2 import *
+# API keys for the Singapore and Beijing regions are different. To get an API key, see https://www.alibabacloud.com/help/en/model-studio/get-api-key
+# If you have not configured environment variables, replace the following line with your Model Studio API key: dashscope.api_key = "sk-xxx"
+dashscope.api_key = os.environ.get('DASHSCOPE_API_KEY')
+# The following is the URL for the Singapore region. If you use a model in the Beijing region, replace the URL with: wss://dashscope.aliyuncs.com/api-ws/v1/inference
+dashscope.base_websocket_api_url='wss://dashscope-intl.aliyuncs.com/api-ws/v1/inference'
+# Model
+# Different model versions require corresponding voices:
+# cosyvoice-v3-flash/cosyvoice-v3-plus: Use voices such as longanyang.
+# cosyvoice-v2: Use voices such as longxiaochun_v2.
+# Each voice supports different languages. When synthesizing non-Chinese languages such as Japanese or Korean, select a voice that supports the corresponding language. For more information, see the CosyVoice voice list.
+model = "cosyvoice-v3-flash"
+# Voice
+voice = "longanyang"
+# Instantiate SpeechSynthesizer and pass request parameters such as model and voice in the constructor.
+synthesizer = SpeechSynthesizer(model=model, voice=voice)
+# Send the text to be synthesized and get the binary audio.
+audio = synthesizer.call("How is the weather today?")
+# The first time you send text, a WebSocket connection is established. The first packet delay includes the connection establishment time.
+print('[Metric] Request ID: {}, First packet delay: {} ms'.format(
+ synthesizer.get_last_request_id(),
+ synthesizer.get_first_package_delay()))
+# Save the audio locally.
+with open('output.mp3', 'wb') as f:
+ f.write(audio) 
+ Java 
+ import com.alibaba.dashscope.audio.ttsv2.SpeechSynthesisParam;
+import com.alibaba.dashscope.audio.ttsv2.SpeechSynthesizer;
+import com.alibaba.dashscope.utils.Constants;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.ByteBuffer;
+public class Main {
+ // Model
+ // Different model versions require corresponding voices:
+ // cosyvoice-v3-flash/cosyvoice-v3-plus: Use voices such as longanyang.
+ // cosyvoice-v2: Use voices such as longxiaochun_v2.
+ // Each voice supports different languages. When synthesizing non-Chinese languages such as Japanese or Korean, select a voice that supports the corresponding language. For more information, see the CosyVoice voice list.
+ private static String model = "cosyvoice-v3-flash";
+ // Voice
+ private static String voice = "longanyang";
+ public static void streamAudioDataToSpeaker() {
+ // Request parameters
+ SpeechSynthesisParam param =
+ SpeechSynthesisParam.builder()
+ // API keys for the Singapore and Beijing regions are different. To get an API key, see https://www.alibabacloud.com/help/en/model-studio/get-api-key
+ // If you have not configured environment variables, replace the following line with your Model Studio API key: .apiKey("sk-xxx")
+ .apiKey(System.getenv("DASHSCOPE_API_KEY"))
+ .model(model) // Model
+ .voice(voice) // Voice
+ .build();
+ // Synchronous mode: Disable callback (second parameter is null).
+ SpeechSynthesizer synthesizer = new SpeechSynthesizer(param, null);
+ ByteBuffer audio = null;
+ try {
+ // Block until audio returns.
+ audio = synthesizer.call("How is the weather today?");
+ } catch (Exception e) {
+ throw new RuntimeException(e);
+ } finally {
+ // Close the WebSocket connection when the task ends.
+ synthesizer.getDuplexApi().close(1000, "bye");
+ }
+ if (audio != null) {
+ // Save the audio data to the local file "output.mp3".
+ File file = new File("output.mp3");
+ // The first time you send text, a WebSocket connection is established. The first packet delay includes the connection establishment time.
+ System.out.println(
+ "[Metric] Request ID: "
+ + synthesizer.getLastRequestId()
+ + ", First packet delay (ms): "
+ + synthesizer.getFirstPackageDelay());
+ try (FileOutputStream fos = new FileOutputStream(file)) {
+ fos.write(audio.array());
+ } catch (IOException e) {
+ throw new RuntimeException(e);
+ }
+ }
+ }
+ public static void main(String[] args) {
+ // The following is the URL for the Singapore region. If you use a model in the Beijing region, replace the URL with: wss://dashscope.aliyuncs.com/api-ws/v1/inference
+ Constants.baseWebsocketApiUrl = "wss://dashscope-intl.aliyuncs.com/api-ws/v1/inference";
+ streamAudioDataToSpeaker();
+ System.exit(0);
+ }
+} 
+ Convert LLM-generated text to speech in real time and play it through speakers 
+ The following code shows how to play text content returned in real time from the Qwen large language model (qwen-turbo) on a local device. 
+ Python 
+ Before you run the Python example, install a third-party audio playback library using pip. # coding=utf-8
+# Installation instructions for pyaudio:

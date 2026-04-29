@@ -1,0 +1,239 @@
+Document Center
+ All Products 
+Search
+ Document Center 
+ Alibaba Cloud Model Studio 
+ User Guide (Models) 
+ Inference 
+ Speech recognition 
+ Real-time speech recognition (Qwen) 
+all-products-head 
+ This Product 
+ This Product 
+ All Products 
+ Alibaba Cloud Model Studio:Real-time speech recognition - Qwen 
+ Convert audio streams to text in real time over WebSocket. This supports multilingual recognition, emotion detection, and VAD. 
+ Supported regions and endpoints 
+ International 
+ Mainland China 
+ Data storage 
+ Singapore 
+ Beijing 
+ Inference computing 
+ Dynamically scheduled globally, excluding Mainland China 
+ Limited to Mainland China 
+ WebSocket endpoint 
+ wss://dashscope-intl.aliyuncs.com/api-ws/v1/realtime 
+ wss://dashscope.aliyuncs.com/api-ws/v1/realtime 
+ API key console 
+ modelstudio.console.alibabacloud.com 
+ bailian.console.alibabacloud.com 
+ Pricing 
+ $0.00009/second 
+ $0.000047/second 
+ For more information about deployment modes, see Compare deployment modes . 
+ Session workflow 
+ A typical session follows this flow: 
+ Connect -- Establish a WebSocket connection to the service endpoint with your API key. 
+ Configure -- Send a session.update event to set the audio format, language, and turn detection mode. 
+ Stream audio -- Send audio chunks as Base64-encoded data through input_audio_buffer.append events. 
+ Receive results -- The server returns intermediate transcription through conversation.item.input_audio_transcription.text events and final transcription through conversation.item.input_audio_transcription.completed events. 
+ Finish -- Send a session.finish event to end the session. The server responds with a session.finished event. 
+ Turn detection modes 
+ Mode 
+ Configuration 
+ Behavior 
+ Server VAD 
+ Set turn_detection.type to server_vad 
+ Server automatically detects speech boundaries. 
+ Manual 
+ Set turn_detection to null 
+ Control turn boundaries with input_audio_buffer.commit events. Continuous audio must not exceed 60 seconds. 
+ Supported models 
+ All deployment regions support the same model family: Qwen3-ASR-Flash-Realtime . 
+ Version type 
+ Model ID 
+ Description 
+ Stable 
+ qwen3-asr-flash-realtime 
+ Points to qwen3-asr-flash-realtime-2025-10-27 
+ Latest snapshot 
+ qwen3-asr-flash-realtime-2026-02-10 
+ Most recent snapshot 
+ Snapshot 
+ qwen3-asr-flash-realtime-2025-10-27 
+ Point-in-time snapshot 
+ The stable version alias points to a tested snapshot—use it for production. Snapshot versions are fixed releases for pinning specific model revisions. 
+ For the complete model catalog, see Model list . 
+ Choose a model for your scenario 
+ Scenario 
+ Recommended model 
+ Reason 
+ Customer service quality inspection 
+ qwen3-asr-flash-realtime-2026-02-10 
+ Provides real-time call analysis with emotion detection for quality monitoring. 
+ Live streaming and short videos 
+ qwen3-asr-flash-realtime-2026-02-10 
+ Generates real-time multilingual captions for live content. 
+ Online meetings and interviews 
+ qwen3-asr-flash-realtime-2026-02-10 
+ Provides real-time meeting transcription for text summaries. 
+ Before you begin 
+ Before you begin: 
+ Install the SDK or dependencies for your chosen integration method. See the version requirements in each section below. 
+ Obtain an API key from the Create an API key (Singapore and Beijing regions use different keys). 
+ Set the API key as an environment variable: export DASHSCOPE_API_KEY="sk-xxx" 
+ Prepare a test audio file (PCM format, 16 kHz, mono) named your_audio_file.pcm in your working directory. 
+ Get started with the DashScope SDK 
+ Java 
+ Install the SDK . Ensure that the DashScope SDK version is 2.22.5 or later. 
+ import com.alibaba.dashscope.audio.omni.*;
+import com.alibaba.dashscope.exception.NoApiKeyException;
+import com.google.gson.JsonObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import javax.sound.sampled.LineUnavailableException;
+import java.io.File;
+import java.io.FileInputStream;
+import java.util.Base64;
+import java.util.Collections;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.atomic.AtomicReference;
+public class Qwen3AsrRealtimeUsage {
+ private static final Logger log = LoggerFactory.getLogger(Qwen3AsrRealtimeUsage.class);
+ private static final int AUDIO_CHUNK_SIZE = 1024; // Audio chunk size in bytes
+ private static final int SLEEP_INTERVAL_MS = 30; // Sleep interval in milliseconds
+ public static void main(String[] args) throws InterruptedException, LineUnavailableException {
+ CountDownLatch finishLatch = new CountDownLatch(1);
+ OmniRealtimeParam param = OmniRealtimeParam.builder()
+ .model("qwen3-asr-flash-realtime")
+ // The following URL is for the Singapore region. If you use a model in the Beijing region, replace the URL with wss://dashscope.aliyuncs.com/api-ws/v1/realtime.
+ .url("wss://dashscope-intl.aliyuncs.com/api-ws/v1/realtime")
+ // API keys for the Singapore and Beijing regions are different. To get an API key, see https://www.alibabacloud.com/help/zh/model-studio/get-api-key.
+ // If you have not configured an environment variable, replace the following line with your Model Studio API key: .apikey("sk-xxx")
+ .apikey(System.getenv("DASHSCOPE_API_KEY"))
+ .build();
+ OmniRealtimeConversation conversation = null;
+ final AtomicReference<OmniRealtimeConversation> conversationRef = new AtomicReference<>(null);
+ conversation = new OmniRealtimeConversation(param, new OmniRealtimeCallback() {
+ @Override
+ public void onOpen() {
+ System.out.println("connection opened");
+ }
+ @Override
+ public void onEvent(JsonObject message) {
+ String type = message.get("type").getAsString();
+ switch(type) {
+ case "session.created":
+ System.out.println("start session: " + message.get("session").getAsJsonObject().get("id").getAsString());
+ break;
+ case "conversation.item.input_audio_transcription.completed":
+ System.out.println("transcription: " + message.get("transcript").getAsString());
+ finishLatch.countDown();
+ break;
+ case "input_audio_buffer.speech_started":
+ System.out.println("======VAD Speech Start======");
+ break;
+ case "input_audio_buffer.speech_stopped":
+ System.out.println("======VAD Speech Stop======");
+ break;
+ case "conversation.item.input_audio_transcription.text":
+ System.out.println("transcription: " + message.get("text").getAsString());
+ break;
+ default:
+ break;
+ }
+ }
+ @Override
+ public void onClose(int code, String reason) {
+ System.out.println("connection closed code: " + code + ", reason: " + reason);
+ }
+ });
+ conversationRef.set(conversation);
+ try {
+ conversation.connect();
+ } catch (NoApiKeyException e) {
+ throw new RuntimeException(e);
+ }
+ OmniRealtimeTranscriptionParam transcriptionParam = new OmniRealtimeTranscriptionParam();
+ transcriptionParam.setLanguage("zh");
+ transcriptionParam.setInputAudioFormat("pcm");
+ transcriptionParam.setInputSampleRate(16000);
+ OmniRealtimeConfig config = OmniRealtimeConfig.builder()
+ .modalities(Collections.singletonList(OmniRealtimeModality.TEXT))
+ .transcriptionConfig(transcriptionParam)
+ .build();
+ conversation.updateSession(config);
+ String filePath = "your_audio_file.pcm";
+ File audioFile = new File(filePath);
+ if (!audioFile.exists()) {
+ log.error("Audio file not found: {}", filePath);
+ return;
+ }
+ try (FileInputStream audioInputStream = new FileInputStream(audioFile)) {
+ byte[] audioBuffer = new byte[AUDIO_CHUNK_SIZE];
+ int bytesRead;
+ int totalBytesRead = 0;
+ log.info("Starting to send audio data from: {}", filePath);
+ // Read and send audio data in chunks
+ while ((bytesRead = audioInputStream.read(audioBuffer)) != -1) {
+ totalBytesRead += bytesRead;
+ String audioB64 = Base64.getEncoder().encodeToString(audioBuffer);
+ // Send audio chunk to conversation
+ conversation.appendAudio(audioB64);
+ // Add small delay to simulate real-time audio streaming
+ Thread.sleep(SLEEP_INTERVAL_MS);
+ }
+ log.info("Finished sending audio data. Total bytes sent: {}", totalBytesRead);
+ } catch (Exception e) {
+ log.error("Error sending audio from file: {}", filePath, e);
+ }
+ // Send session.finish, wait for the session to finish, and then close the connection.
+ conversation.endSession();
+ log.info("Task finished");
+ System.exit(0);
+ }
+} 
+ Expected output: connection opened
+start session: <session-id>
+======VAD Speech Start======
+transcription: <intermediate text>
+======VAD Speech Stop======
+transcription: <final transcribed text>
+connection closed code: 1000, reason: ... 
+ Python 
+ Install the SDK . Ensure that the DashScope SDK version is 1.25.6 or later. 
+ import logging
+import os
+import base64
+import signal
+import sys
+import time
+import dashscope
+from dashscope.audio.qwen_omni import *
+from dashscope.audio.qwen_omni.omni_realtime import TranscriptionParams
+def setup_logging():
+ """Configure logging."""
+ logger = logging.getLogger('dashscope')
+ logger.setLevel(logging.DEBUG)
+ handler = logging.StreamHandler(sys.stdout)
+ handler.setLevel(logging.DEBUG)
+ formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+ handler.setFormatter(formatter)
+ logger.addHandler(handler)
+ logger.propagate = False
+ return logger
+def init_api_key():
+ """Initialize the API key."""
+ # API keys for the Singapore and Beijing regions are different. To get an API key, see https://www.alibabacloud.com/help/zh/model-studio/get-api-key.
+ # If you have not configured an environment variable, replace the following line with your Model Studio API key: dashscope.api_key = "sk-xxx"
+ dashscope.api_key = os.environ.get('DASHSCOPE_API_KEY', 'YOUR_API_KEY')
+ if dashscope.api_key == 'YOUR_API_KEY':
+ print('[Warning] Using placeholder API key, set DASHSCOPE_API_KEY environment variable.')
+class MyCallback(OmniRealtimeCallback):
+ """Handle real-time recognition callbacks."""
+ def __init__(self, conversation):
+ self.conversation = conversation
+ self.handlers = {
+ 'session.created': self._handle_session_created,
+ 'conversation.item.input_audio_transcription.completed': self._handle_final_text,

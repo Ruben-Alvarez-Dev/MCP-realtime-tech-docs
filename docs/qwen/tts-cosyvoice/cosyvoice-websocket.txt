@@ -1,0 +1,142 @@
+Document Center
+ All Products 
+Search
+ Document Center 
+ Alibaba Cloud Model Studio 
+ API Reference (Models) 
+ Speech synthesis 
+ Real-time speech synthesis (CosyVoice) 
+ WebSocket API 
+all-products-head 
+ This Product 
+ This Product 
+ All Products 
+ Alibaba Cloud Model Studio:CosyVoice speech synthesis WebSocket API 
+ Parameters and the interaction protocol for WebSocket connections to CosyVoice speech synthesis. Use WebSocket for languages other than Java and Python (which have SDK support). 
+ User guide: For model overviews and selection suggestions, see Real-time speech synthesis - CosyVoice . 
+ WebSocket provides full-duplex communication: the client and server establish a persistent connection with a single handshake, allowing both parties to push data to each other, providing better real-time performance. 
+ WebSocket libraries are available for most languages (Go: gorilla/websocket , PHP: Ratchet , Node.js: ws ). Familiarize yourself with WebSocket basics before starting. 
+ Important 
+ CosyVoice models support only WebSocket connections—not HTTP REST APIs. HTTP requests return InvalidParameter or URL errors. 
+ Prerequisites 
+ Get an API key . 
+ Models and pricing 
+ See Real-time speech synthesis - CosyVoice . 
+ Text and format limitations 
+ Text length limits 
+ Send up to 20,000 characters per continue-task instruction , with a total limit of 200,000 characters across all instructions. 
+ Character counting rules 
+ Chinese characters (simplified/traditional Chinese, Japanese Kanji, Korean Hanja) count as two characters. All other characters (punctuation, letters, numbers, Kana, Hangul) count as one. 
+ SSML tags are not included when calculating the text length. 
+ Examples: 
+ "你好" → 2 (Chinese character) + 2 (Chinese character) = 4 characters 
+ "中A文123" → 2 (Chinese character) + 1 (A) + 2 (Chinese character) + 1 (1) + 1 (2) + 1 (3) = 8 characters 
+ "中文。" → 2 (Chinese character) + 2 (Chinese character) + 1 (.) = 5 characters 
+ "中 文。" → 2 (Chinese character) + 1 (space) + 2 (Chinese character) + 1 (.) = 6 characters 
+ "<speak>你好</speak>" → 2 (Chinese character) + 2 (Chinese character) = 4 characters 
+ Encoding format 
+ Use UTF-8 encoding. 
+ Support for mathematical expressions 
+ Mathematical expression parsing (v3.5-flash, v3.5-plus, v3-flash, v3-plus, v2 only): Supports primary and secondary school math—basic operations, algebra, geometry. 
+ Note 
+ This feature only supports Chinese. 
+ See Convert LaTeX formulas to speech (Chinese language only) . 
+ SSML support 
+ SSML requires all of the following conditions to be met: 
+ Model support: Only cosyvoice-v3.5-flash, cosyvoice-v3.5-plus, cosyvoice-v3-flash, cosyvoice-v3-plus, and cosyvoice-v2 support SSML. 
+ Voice support: You must use an SSML-enabled voice. Supported voices include the following: 
+ All cloned voices (created through the Voice Cloning API). 
+ System voices marked as SSML-enabled in the voice list . 
+ Note 
+ System voices that do not support SSML (such as some basic voices) return the error “SSML text is not supported at the moment!” even with enable_ssml enabled. 
+ Parameter setting: In the run-task instruction , set the enable_ssml parameter to true . 
+ After meeting these conditions, send SSML-formatted text through the continue-task instruction to use SSML. For a complete example, see Getting started . 
+ Interaction flow 
+ Client-to-server messages are instructions . Server-to-client messages are either JSON-formatted events or binary audio streams. 
+ The client-server interaction follows this sequence: 
+ Establish connection: Client opens a WebSocket connection to the server. 
+ Start task: Client sends the run-task instruction . 
+ Wait for confirmation: Client receives the task-started event confirming the task has started. 
+ Send text to synthesize: 
+ Client sends one or more continue-task instructions in order. The server returns a result-generated event and audio stream after receiving a complete sentence. For text length constraints, see the text field in the continue-task instruction . 
+ Note 
+ Send multiple continue-task instructions to submit text fragments in order. The server automatically segments text into sentences: 
+ Complete sentences are synthesized immediately, and the client receives the audio. 
+ Incomplete sentences are buffered until complete. No audio is returned for incomplete sentences. 
+ After receiving the finish-task instruction , the server force-synthesizes all buffered content. 
+ Receive audio: Receive the audio stream through the binary channel. 
+ Notify the server to end the task: 
+ After sending all text, client sends the finish-task instruction and continues receiving audio. Do not skip this step, or the ending audio may be lost. 
+ Task ends: 
+ Client receives the task-finished event , marking the task end. 
+ Close connection: Client closes the WebSocket connection. 
+ To improve resource utilization, reuse a WebSocket connection to handle multiple tasks instead of creating a new connection for each task. See Connection overhead and reuse . 
+ Important 
+ The task_id must remain consistent throughout: Within a single synthesis task, run-task, all continue-task, and finish-task instructions must use the same task_id . 
+ Consequences of mismatched task_ids: 
+ Disordered audio stream delivery due to unassociated requests. 
+ Misaligned speech content due to text being assigned to different tasks. 
+ Abnormal task state, possibly preventing receipt of the task-finished event. 
+ Billing failures or inaccurate usage statistics. 
+ Correct approach: 
+ Generate a unique task_id (for example, using UUID) when sending the run-task instruction. 
+ Store the task_id in a variable. 
+ Use this task_id for all subsequent continue-task and finish-task instructions. 
+ After the task ends (after receiving task-finished), generate a new task_id for the next task. 
+ Client implementation considerations 
+ When implementing a WebSocket client, especially on Flutter, web, or mobile platforms, clearly define server and client responsibilities to ensure task integrity and stability. 
+ Server and client responsibilities 
+ Server responsibilities 
+ The server delivers the complete audio stream in order. You do not need to handle audio ordering or completeness. 
+ Client responsibilities 
+ The client must handle the following: 
+ Read and concatenate all audio chunks 
+ The server delivers audio as multiple binary frames. The client must receive all frames and concatenate them to form the final audio file: # Python example: Concatenate audio chunks
+with open("output.mp3", "ab") as f: # Append mode
+ f.write(audio_chunk) # audio_chunk is each received binary audio chunk // JavaScript example: Concatenate audio chunks
+const audioChunks = [];
+ws.onmessage = (event) => {
+ if (event.data instanceof Blob) {
+ audioChunks.push(event.data); // Collect all audio chunks
+ }
+};
+// Merge audio after task completes
+const audioBlob = new Blob(audioChunks, { type: 'audio/mp3' }); 
+ Maintain a complete WebSocket lifecycle 
+ Do not disconnect the WebSocket connection prematurely during the entire task, from sending the run-task instruction to receiving the task-finished event . Common mistakes: 
+ Closing the connection before all audio chunks are returned, resulting in incomplete audio. 
+ Forgetting to send the finish-task instruction , leaving text buffered on the server and unprocessed. 
+ Failing to handle WebSocket keepalive properly during page navigation or app backgrounding. 
+ Important 
+ Mobile apps (such as Flutter, iOS, and Android) require special attention to network management when entering the background. Maintain the WebSocket connection in a background task or service, or reinitialize the connection when returning to the foreground. 
+ Text integrity in ASR→LLM→TTS workflows 
+ In ASR (speech recognition) → LLM (large language model) → TTS (speech synthesis) workflows, ensure the text passed to TTS is complete. For example: 
+ Wait for the LLM to generate a full sentence or paragraph before sending the continue-task instruction , rather than streaming character-by-character. 
+ For streaming synthesis, send text in batches at natural sentence boundaries (such as periods or question marks). 
+ After the LLM finishes generating, always send the finish-task instruction to avoid missing trailing content. 
+ Platform-specific tips 
+ Flutter: When using the web_socket_channel package, close the connection correctly in the dispose method to prevent memory leaks. Also handle app lifecycle events (such as AppLifecycleState.paused ) for background transitions. 
+ Web (browser): Some browsers limit the number of WebSocket connections. Reuse a single connection for multiple tasks. Use the beforeunload event to close the connection explicitly before the page closes. 
+ Mobile (iOS/Android native): The operating system may pause or terminate network connections when the app enters the background. Use a background task or foreground service to keep the WebSocket active, or reinitialize the task when returning to the foreground. 
+ URL 
+ The WebSocket URL is fixed: 
+ International 
+ In international deployment mode , the access point and data storage are both located in the Singapore region . Model inference computing resources are dynamically scheduled globally, excluding the Chinese mainland. 
+ WebSocket URL: wss://dashscope-intl.aliyuncs.com/api-ws/v1/inference 
+ Chinese mainland 
+ In Chinese mainland deployment mode , the access point and data storage are both located in the Beijing region . Model inference computing resources are restricted to the Chinese mainland. 
+ WebSocket URL: wss://dashscope.aliyuncs.com/api-ws/v1/inference 
+ Important 
+ Common URL configuration errors: 
+ Error: Using URLs that start with http:// or https:// → Correct: You must use the wss:// protocol. 
+ Error: Placing the Authorization parameter in the URL query string (e.g., ?Authorization=bearer <your_api_key> ) → Correct: Set the Authorization parameter in the HTTP handshake headers. See Headers . 
+ Error: Adding model names or other path parameters to the end of the URL → Correct: The URL is fixed. Specify the model using the payload.model parameter in the run-task instruction . 
+ Headers 
+ Set the following request headers: 
+ Parameter 
+ Type 
+ Required 
+ Description 
+ Authorization 
+ string 
+ Yes

@@ -1,0 +1,603 @@
+Models overview | LiveKit Documentation
+Skip to main content
+Docs
+Search
+⌘
+K
+Sign in with Cloud
+Introduction
+Build Agents
+Agent Frontends
+Telephony
+WebRTC Transport
+Manage & Deploy
+Reference
+Get Started
+Introduction
+Voice AI quickstart
+Agent Builder
+Agent Console
+Prompting guide
+Multimodality
+Overview
+Speech & audio
+Text & transcriptions
+Images & video
+Logic & Structure
+Overview
+Agent sessions
+Chat context
+Tasks & task groups
+Workflows
+Tool definition & use
+Pipeline nodes & hooks
+Turn detection & interruptions
+Agents & handoffs
+External data & RAG
+Testing & evaluation
+Overview
+Test framework
+Prebuilt components
+Prebuilt tasks
+Prebuilt tools
+Agent Server
+Overview
+Startup modes
+Server lifecycle
+Agent dispatch
+Job lifecycle
+Server options
+Models
+Overview
+LiveKit Inference
+LLM
+STT
+TTS
+Realtime
+Virtual avatar
+Partner spotlight
+OpenAI
+Google
+Azure
+AWS
+xAI
+Groq
+Cerebras
+Reference
+Agents framework
+Turn handling options
+Events and error handling
+Agent dispatch service API
+LiveKit CLI
+Inference LLM parameters
+Models overview
+Choose the right AI models for your voice agent.
+Copy page
+See more page options
+On this page
+Overview
+LiveKit Inference
+Plugins
+OpenAI API compatibility
+Contributing
+Usage
+In this section
+Copy page
+See more page options
+Overview
+Voice agents require one or more AI models to provide understanding, intelligence, and speech. You can choose to use a high-performance STT-LLM-TTS voice pipeline constructed from multiple specialized models, or to use a realtime model with direct speech-to-speech capabilities.
+LiveKit Agents includes support for a wide variety of AI providers, from the largest research companies to emerging startups. You can use LiveKit Inference to access many of these models
+directly through LiveKit Cloud
+, or you can use the open source
+plugins
+to connect directly to a wider range of model providers.
+LiveKit Inference
+LiveKit Inference provides access to many of the best models and providers for voice agents, including models from OpenAI, Google, AssemblyAI, Deepgram, Cartesia, ElevenLabs, and more. LiveKit Inference is included in LiveKit Cloud, and does not require any additional plugins.
+LiveKit Inference
+Supported models, configuration options, and billing for LiveKit Inference.
+Plugins
+LiveKit Agents includes a large ecosystem of open source plugins for a variety of AI providers. Each plugin is designed to support a single provider, but may cover a range of functionality depending on the provider. For instance, the OpenAI plugin includes support for OpenAI language models, speech, transcription, and the Realtime API.
+For Python, the plugins are offered as optional dependencies on the base SDK. For instance, to install the SDK with the OpenAI plugin, run the following command:
+uv
+add
+"livekit-agents[openai]~=1.4"
+For Node.js, the plugins are offered as individual packages. For instance, to install the OpenAI plugin, use the following command:
+pnpm
+add
+"@livekit/agents-plugin-openai@1.x"
+Each plugin requires that you have your own account with the provider, as well as an API key or other credentials. You can find authentication instructions in the documentation for each individual plugin.
+OpenAI API compatibility
+Many providers have standardized around the OpenAI API format for chat completions and more. Support for a number of these providers is included out-of-the-box with the OpenAI plugin, and you can find specific instructions in the associated documentation. For any provider not included, you can override the API key and base URL at initialization for the LLM, STT, and TTS interfaces in the plugin.
+API Mode for OpenAI-Compatible Endpoints
+When using OpenAI-compatible endpoints (providers with custom
+base_url
+), confirm you're using the API mode that matches the implementation, as mode choice varies by provider. See
+API modes
+for more information.
+Python
+Node.js
+from
+livekit
+.
+plugins
+import
+openai
+import
+os
+session
+=
+AgentSession
+(
+llm
+=
+openai
+.
+LLM
+(
+model
+=
+"model-name"
+,
+base_url
+=
+"https://api.provider.com/v1"
+,
+api_key
+=
+os
+.
+getenv
+(
+"PROVIDER_API_KEY"
+)
+)
+,
+# ... stt, tts, etc ...
+)
+import
+*
+as
+openai
+from
+'@livekit/agents-plugin-openai'
+;
+const
+session
+=
+new
+voice
+.
+AgentSession
+(
+{
+llm
+:
+openai
+.
+LLM
+(
+{
+model
+:
+"model-name"
+,
+baseURL
+:
+"https://api.provider.com/v1"
+,
+apiKey
+:
+process
+.
+env
+.
+PROVIDER_API_KEY
+}
+)
+,
+// ... stt, tts, etc ...
+}
+)
+;
+Contributing
+The LiveKit Agents plugin framework is extensible and community-driven. Your plugin can integrate with new providers or directly load models for local inference. LiveKit especially welcomes new TTS, STT, and LLM plugins.
+To learn more, see the guidelines for contributions to
+the
+Python
+and
+Node.js
+SDKs.
+Usage
+Use models with the
+AgentSession
+class. This class accepts models in the
+stt
+,
+tts
+, and
+llm
+arguments. For LiveKit Inference models, use the
+inference
+module classes. For plugin models, use the plugin classes directly.
+For instance, a simple
+AgentSession
+built on LiveKit Inference might look like the following:
+Python
+Node.js
+from
+livekit
+.
+agents
+import
+AgentSession
+,
+inference
+session
+=
+AgentSession
+(
+stt
+=
+inference
+.
+STT
+(
+model
+=
+"deepgram/flux-general"
+,
+language
+=
+"en"
+)
+,
+llm
+=
+inference
+.
+LLM
+(
+model
+=
+"openai/gpt-5.3-chat-latest"
+,
+)
+,
+tts
+=
+"cartesia/sonic-3:9626c31c-bec5-4cca-baa8-f8ba9e84c8bc"
+,
+)
+import
+{
+AgentSession
+,
+inference
+}
+from
+'@livekit/agents'
+;
+session
+=
+new
+AgentSession
+(
+{
+stt
+:
+new
+inference
+.
+STT
+(
+{
+model
+:
+"deepgram/flux-general"
+,
+language
+:
+"en"
+}
+)
+,
+llm
+:
+new
+inference
+.
+LLM
+(
+{
+model
+:
+"openai/gpt-5.3-chat-latest"
+,
+}
+)
+,
+tts
+:
+"cartesia/sonic-3:9626c31c-bec5-4cca-baa8-f8ba9e84c8bc"
+,
+}
+)
+;
+To use plugins instead, you can configure it like this:
+Python
+Node.js
+from
+livekit
+.
+agents
+import
+AgentSession
+from
+livekit
+.
+plugins
+import
+openai
+,
+cartesia
+,
+assemblyai
+# Use Responses API (recommended for direct OpenAI usage)
+session
+=
+AgentSession
+(
+llm
+=
+openai
+.
+responses
+.
+LLM
+(
+model
+=
+"gpt-5.3-chat-latest"
+)
+,
+tts
+=
+cartesia
+.
+TTS
+(
+model
+=
+"sonic-3"
+,
+voice
+=
+"9626c31c-bec5-4cca-baa8-f8ba9e84c8bc"
+)
+,
+stt
+=
+assemblyai
+.
+STT
+(
+language
+=
+"en"
+)
+,
+)
+import
+{
+AgentSession
+}
+from
+'@livekit/agents'
+;
+import
+*
+as
+openai
+from
+'@livekit/agents-plugin-openai'
+;
+import
+*
+as
+cartesia
+from
+'@livekit/agents-plugin-cartesia'
+;
+import
+*
+as
+assemblyai
+from
+'@livekit/agents-plugin-assemblyai'
+;
+session
+=
+new
+AgentSession
+(
+{
+llm
+:
+new
+openai
+.
+responses
+.
+LLM
+(
+{
+model
+:
+"gpt-5.3-chat-latest"
+}
+)
+,
+tts
+:
+new
+cartesia
+.
+TTS
+(
+{
+model
+:
+"sonic-3"
+,
+voice
+:
+"9626c31c-bec5-4cca-baa8-f8ba9e84c8bc"
+}
+)
+,
+stt
+:
+new
+assemblyai
+.
+STT
+(
+{
+language
+:
+"en"
+}
+)
+,
+}
+)
+;
+You can use a combination of LiveKit Inference and plugins to build your voice agent. Additionally, you can change models during a session to optimize for different use cases or conversation phases. For more information, see
+Workflows
+.
+In this section
+The following guides cover all models available in LiveKit Agents, both through LiveKit Inference and additional plugins. Refer to these guides for model availability, configuration options, and usage instructions.
+LiveKit Inference
+Supported models, configuration options, and billing for LiveKit Inference.
+Large language models (LLM)
+Chat and reasoning models from the largest research companies and emerging startups.
+Speech-to-text (STT)
+Transcription models from providers including Deepgram and AssemblyAI.
+Text-to-speech (TTS)
+Speech models and custom voices from providers including Cartesia and ElevenLabs.
+Realtime models
+Speech-to-speech models including the OpenAI Realtime API and Gemini Live.
+Virtual avatars
+Realtime video avatars from providers including Anam and Tavus.
+On this page
+Overview
+LiveKit Inference
+Plugins
+OpenAI API compatibility
+Contributing
+Usage
+In this section
+Previous
+Agent Server: Server options
+Up Next
+LiveKit Inference
+The open source framework and cloud platform for voice, video, and physical AI agents.
+Keep in touch
+Products
+Agent platform
+Media server
+SDKs
+Cloud dashboard
+Terms of service
+Resources
+Documentation
+Community
+Coding agent support
+Brand assets
+Video codecs
+Codec bitrates
+WebRTC browser test
+Connection test
+Company
+About
+Blog
+Careers
+Open source
+©
+2026
+LiveKit. Engineered and designed worldwide.
+All rights reserved.
+Terms of Service
+|
+Cookie Policy
+|
+Privacy Policy
+Introduction
+Build Agents
+Agent Frontends
+Telephony
+WebRTC Transport
+Manage & Deploy
+Reference
+Sign in
+Search
+⌘
+K
+Get Started
+Introduction
+Voice AI quickstart
+Agent Builder
+Agent Console
+Prompting guide
+Multimodality
+Overview
+Speech & audio
+Text & transcriptions
+Images & video
+Logic & Structure
+Overview
+Agent sessions
+Chat context
+Tasks & task groups
+Workflows
+Tool definition & use
+Pipeline nodes & hooks
+Turn detection & interruptions
+Agents & handoffs
+External data & RAG
+Testing & evaluation
+Overview
+Test framework
+Prebuilt components
+Prebuilt tasks
+Prebuilt tools
+Agent Server
+Overview
+Startup modes
+Server lifecycle
+Agent dispatch
+Job lifecycle
+Server options
+Models
+Overview
+LiveKit Inference
+LLM
+STT
+TTS
+Realtime
+Virtual avatar
+Partner spotlight
+OpenAI
+Google
+Azure
+AWS
+xAI
+Groq
+Cerebras
+Reference
+Agents framework
+Turn handling options
+Events and error handling
+Agent dispatch service API
+LiveKit CLI
+Inference LLM parameters

@@ -1,0 +1,342 @@
+OpenAI and LiveKit | LiveKit Documentation
+Skip to main content
+Docs
+Search
+⌘
+K
+Sign in with Cloud
+Introduction
+Build Agents
+Agent Frontends
+Telephony
+WebRTC Transport
+Manage & Deploy
+Reference
+Get Started
+Introduction
+Voice AI quickstart
+Agent Builder
+Agent Console
+Prompting guide
+Multimodality
+Overview
+Speech & audio
+Text & transcriptions
+Images & video
+Logic & Structure
+Overview
+Agent sessions
+Chat context
+Tasks & task groups
+Workflows
+Tool definition & use
+Pipeline nodes & hooks
+Turn detection & interruptions
+Agents & handoffs
+External data & RAG
+Testing & evaluation
+Overview
+Test framework
+Prebuilt components
+Prebuilt tasks
+Prebuilt tools
+Agent Server
+Overview
+Startup modes
+Server lifecycle
+Agent dispatch
+Job lifecycle
+Server options
+Models
+Overview
+LiveKit Inference
+LLM
+STT
+TTS
+Realtime
+Virtual avatar
+Partner spotlight
+OpenAI
+Overview
+OpenAI LLM
+Realtime API
+OpenAI TTS
+OpenAI STT
+Google
+Azure
+AWS
+xAI
+Groq
+Cerebras
+Reference
+Agents framework
+Turn handling options
+Events and error handling
+Agent dispatch service API
+LiveKit CLI
+Inference LLM parameters
+OpenAI and LiveKit
+Build world-class realtime AI apps with OpenAI and LiveKit Agents.
+Copy page
+See more page options
+On this page
+OpenAI ecosystem support
+Getting started
+LiveKit Agents overview
+Realtime API
+LiveKit Inference
+OpenAI plugin documentation
+Copy page
+See more page options
+Try LiveKit.fm
+Chat with OpenAI's latest models in a LiveKit demo inspired by OpenAI.fm
+OpenAI ecosystem support
+OpenAI
+provides some of the most powerful AI models and services today, which integrate into LiveKit Agents in the following ways:
+Realtime API
+: A speech-to-speech realtime model with live video input.
+GPT 4.1, GPT 5, GPT 4o, and more
+: Smart and creative models for voice AI.
+STT models
+: From industry-standard
+whisper-1
+to leading-edge
+gpt-4o-transcribe
+.
+TTS models
+: Use OpenAI's latest
+gpt-4o-mini-tts
+to generate lifelike speech in a voice pipeline.
+OpenAI LLM models are available in LiveKit Inference with billing and integration handled automatically. The OpenAI plugin for LiveKit Agents provides support for the full
+OpenAI developer platform
+as well as
+Azure OpenAI Service
+.
+Getting started
+Use the following guide to speak to your own OpenAI-powered voice AI agent in less than 10 minutes.
+Voice AI quickstart
+Build your first voice AI app with the OpenAI Realtime API or GPT-4o.
+Realtime playground
+Experiment with the OpenAI Realtime API and personalities like
+the
+Snarky Teenager
+or
+Opera Singer
+.
+LiveKit Agents overview
+LiveKit Agents is an open source framework for building realtime AI apps in Python and Node.js. It supports complex voice AI
+workflows
+with multiple agents and discrete processing steps, and includes built-in load balancing.
+LiveKit provides SIP support for
+telephony integration
+and full-featured
+frontend SDKs
+in multiple languages. It uses
+WebRTC
+transport for end-user devices, enabling high-quality, low-latency realtime experiences. To learn more, see
+LiveKit Agents
+.
+Realtime API
+LiveKit Agents serves as a bridge between your frontend (connected over WebRTC) and the OpenAI Realtime API (connected over WebSockets). LiveKit automatically converts Realtime API audio response buffers to WebRTC audio streams synchronized with text, and handles business logic like interruption handling automatically. You can add your own logic within your agent, and use LiveKit features for realtime state and data to coordinate with your frontend.
+Additional benefits of LiveKit Agents for the Realtime API include:
+Noise cancellation
+: One line of code to remove background noise and speakers from your input audio.
+Telephony
+: Inbound and outbound calling using SIP trunks.
+Interruption handling
+: Automatically handles context truncation on interruption.
+Transcription sync
+: Realtime API text output is synced to audio playback automatically.
+Loading diagram…
+Realtime API quickstart
+Use the Voice AI quickstart with the Realtime API to get up and running in less than 10 minutes.
+Web and mobile frontends
+Put your agent in your pocket with a custom web or mobile app.
+Telephony integration
+Your agent can place and receive calls with LiveKit's SIP integration.
+Building voice agents
+Comprehensive documentation to build advanced voice AI apps with LiveKit.
+Recipes
+Get inspired by LiveKit's collection of recipes and example apps.
+LiveKit Inference
+Use the following code to use an OpenAI LLM in your
+AgentSession
+:
+Python
+Node.js
+from
+livekit
+.
+agents
+import
+AgentSession
+session
+=
+AgentSession
+(
+llm
+=
+"openai/gpt-5.3-chat-latest"
+,
+)
+import
+{
+AgentSession
+}
+from
+'@livekit/agents'
+;
+session
+=
+new
+AgentSession
+(
+{
+llm
+:
+"openai/gpt-5.3-chat-latest"
+,
+}
+)
+;
+For more information, see the following guide:
+OpenAI in LiveKit Inference
+Using OpenAI models with LiveKit Inference.
+OpenAI plugin documentation
+The following links provide more information on each available OpenAI component in LiveKit Agents.
+Realtime API
+LiveKit Agents plugin for the OpenAI Realtime API.
+OpenAI Models
+LiveKit Agents plugin for
+gpt-4o
+,
+o1-mini
+, and other OpenAI LLMs.
+OpenAI STT
+LiveKit Agents plugin for
+whisper-1
+,
+gpt-4o-transcribe
+, and other OpenAI STT models.
+OpenAI TTS
+LiveKit Agents plugin for
+tts-1
+,
+gpt-4o-mini-tts
+, and other OpenAI TTS models.
+On this page
+OpenAI ecosystem support
+Getting started
+LiveKit Agents overview
+Realtime API
+LiveKit Inference
+OpenAI plugin documentation
+Previous
+Virtual avatar: TruGen
+Up Next
+OpenAI LLM
+The open source framework and cloud platform for voice, video, and physical AI agents.
+Keep in touch
+Products
+Agent platform
+Media server
+SDKs
+Cloud dashboard
+Terms of service
+Resources
+Documentation
+Community
+Coding agent support
+Brand assets
+Video codecs
+Codec bitrates
+WebRTC browser test
+Connection test
+Company
+About
+Blog
+Careers
+Open source
+©
+2026
+LiveKit. Engineered and designed worldwide.
+All rights reserved.
+Terms of Service
+|
+Cookie Policy
+|
+Privacy Policy
+Introduction
+Build Agents
+Agent Frontends
+Telephony
+WebRTC Transport
+Manage & Deploy
+Reference
+Sign in
+Search
+⌘
+K
+Get Started
+Introduction
+Voice AI quickstart
+Agent Builder
+Agent Console
+Prompting guide
+Multimodality
+Overview
+Speech & audio
+Text & transcriptions
+Images & video
+Logic & Structure
+Overview
+Agent sessions
+Chat context
+Tasks & task groups
+Workflows
+Tool definition & use
+Pipeline nodes & hooks
+Turn detection & interruptions
+Agents & handoffs
+External data & RAG
+Testing & evaluation
+Overview
+Test framework
+Prebuilt components
+Prebuilt tasks
+Prebuilt tools
+Agent Server
+Overview
+Startup modes
+Server lifecycle
+Agent dispatch
+Job lifecycle
+Server options
+Models
+Overview
+LiveKit Inference
+LLM
+STT
+TTS
+Realtime
+Virtual avatar
+Partner spotlight
+OpenAI
+Overview
+OpenAI LLM
+Realtime API
+OpenAI TTS
+OpenAI STT
+Google
+Azure
+AWS
+xAI
+Groq
+Cerebras
+Reference
+Agents framework
+Turn handling options
+Events and error handling
+Agent dispatch service API
+LiveKit CLI
+Inference LLM parameters

@@ -1,0 +1,74 @@
+Title: Xiaomi: MiMo-V2-Omni – API Quickstart
+
+URL Source: https://openrouter.ai/xiaomi/mimo-v2-omni-20260318/api
+
+Markdown Content:
+Note: The free trial period for OpenClaw users of MiMo v2 Pro and Omni will end on Thursday April 2 at 12:00PM EST / 5:00PM UTC
+
+Released Mar 18, 2026 262,144 context$0.40/M input tokens$2/M output tokens
+
+MiMo-V2-Omni is a frontier omni-modal model that natively processes image, video, and audio inputs within a unified architecture. It combines strong multimodal perception with agentic capability - visual grounding, multi-step planning, tool use, and code execution - making it well-suited for complex real-world tasks that span modalities, 256K context window.
+
+## Sample code and API for MiMo-V2-Omni
+
+### OpenRouter normalizes requests and responses across providers for you.
+
+OpenRouter provides an OpenAI-compatible completion API to 300+models & providers that you can call directly, or using the OpenAI SDK. Additionally, some third-party SDKs are available.
+
+In the examples below, the[OpenRouter-specific headers](https://openrouter.ai/docs/requests#request-headers) are optional. Setting them allows your app to appear on the OpenRouter leaderboards.
+
+```
+import { OpenRouter } from "@openrouter/sdk";
+
+const openrouter = new OpenRouter({
+  apiKey: "<OPENROUTER_API_KEY>"
+});
+
+const stream = await openrouter.chat.send({
+  model: "xiaomi/mimo-v2-omni",
+  messages: [
+    {
+      "role": "user",
+      "content": [
+        {
+          "type": "text",
+          "text": "What is in this audio, image and video?"
+        },
+        {
+          "type": "input_audio",
+          "input_audio": {
+            "data": "UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB",
+            "format": "wav"
+          }
+        },
+        {
+          "type": "image_url",
+          "image_url": {
+            "url": "https://live.staticflickr.com/3851/14825276609_098cac593d_b.jpg"
+          }
+        },
+        {
+          "type": "video_url",
+          "video_url": {
+            "url": "https://storage.googleapis.com/cloud-samples-data/video/JaneGoodall.mp4"
+          }
+        }
+      ]
+    }
+  ],
+  stream: true
+});
+
+for await (const chunk of stream) {
+  const content = chunk.choices[0]?.delta?.content;
+  if (content) {
+    process.stdout.write(content);
+  }
+}
+```
+
+## Using third-party SDKs
+
+For information about using third-party SDKs and frameworks with OpenRouter, please see our[frameworks documentation](https://openrouter.ai/docs/guides/community/frameworks-and-integrations-overview).
+
+See the [Request docs](https://openrouter.ai/docs/api-reference/overview) for all possible fields, and[Parameters](https://openrouter.ai/docs/api-reference/parameters) for explanations of specific sampling parameters.

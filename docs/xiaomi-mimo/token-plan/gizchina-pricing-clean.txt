@@ -1,0 +1,97 @@
+Xiaomi Launches MiMo Large Model With TokenPlan Pricing — Starting at 39 Yuan
+Home
+Phones
+Wearables
+Tablets
+Reviews
+How To's | Guides
+Contact Us
+Xiaomi Launches MiMo Large Model With TokenPlan Pricing — Starting at 39 Yuan
+ai
+by
+Nick Papanikolopoulos
+Friday, 03 April 2026 at 12:19
+Xiaomi just
+entered the AI model API market
+properly. The
+MiMo
+large model is live, and it comes with a tiered subscription system called TokenPlan that converts usage into credits rather than charging per-call. Four tiers, transparent billing, and an 88% first-purchase discount designed to pull developers in fast.
+The day-one usage figure is the number that turns heads — over 1 trillion tokens processed in a single day.
+Key Points
+Xiaomi MiMo large model launches alongside TokenPlan — four tiers from 39 yuan to 659 yuan per month
+Billing converts token usage into credit consumption — pay for what you use with no hidden costs
+88% discount available on first-time purchases, positioning MiMo as significantly cheaper than comparable competing models
+MiMo exceeded 1 trillion tokens of usage in its first day — a strong early adoption signal
+Broad support for mainstream programming tools and model frameworks confirmed at launch
+TokenPlan Is the Differentiator
+Most AI API pricing is opaque until you actually start using it — complex rate cards, different prices per model version, surprise costs at scale. Xiaomi's TokenPlan approach converts everything into a credit system tied to actual token consumption. You buy a tier, tokens draw down your credits, you see exactly where the money goes.
+Lite, Standard, Pro, and Max give developers entry points based on their actual volume requirements rather than forcing everyone onto a single plan. At 39 yuan for the entry tier, the cost of experimenting is low enough that individual developers can test MiMo without committing to enterprise pricing.
+The Pricing Argument Is Aggressive
+Xiaomi
+isn't being subtle about the competitive positioning. The 88% first-purchase discount isn't a minor introductory offer — it's a deliberate land-grab for developers currently paying more to run comparable workloads on other models. If MiMo delivers genuinely comparable output quality at a fraction of the cost, switching costs become much easier to justify.
+The "significantly lower than competing products" claim will get tested quickly by the developer community. Benchmarks and real-world comparisons will surface fast once the model is in widespread use.
+Read also
+Xiaomi is Building Mi Chat: Their Own AI Assistant is Now Ready
+1 Trillion Tokens in a Day
+That figure needs context — Xiaomi has an enormous existing developer ecosystem and user base to draw initial traffic from. But even accounting for that, exceeding 1 trillion tokens on day one suggests the infrastructure held up under serious load and that initial demand was genuine rather than just curiosity clicks.
+Read also
+Xiaomi's Got a New AI Brain: Meet MiMo, an Open-Source Reasoning Model
+Whether that pace sustains is the more meaningful question. Day-one numbers for AI model launches are always impressive — week-four retention tells the real story.
+loading
+Popular News
+Vivo TWS 5i Launches at $17 With 50-Hour Battery and DeepX 3.0 Audio
+Vivo
+•
+Apr 29, 00:09
+Purple Power: Reviewing the Stunning New Design of the TECNO Spark 50 5G
+Reviews
+•
+Apr 29, 06:59
+Xiaomi 17T Leak: Big Batteries, Fast Charging, and Flagship Power Incoming
+Xiaomi News
+•
+Apr 29, 06:32
+Apple 20th Anniversary iPhone Could Feature True Full-Screen, Bezel-Less Design
+Apple
+•
+Apr 29, 06:12
+BYD Confirms F1 Talks - But who's gonna drive it?
+BYD
+•
+Apr 29, 09:14
+More Articles
+Latest News
+1
+OnePlus Ace 6 Ultra Is Official: 8,600mAh, Dimensity 9500, and a Joystick-Free Gaming Controller!
+2
+BYD Confirms F1 Talks - But who's gonna drive it?
+3
+Purple Power: Reviewing the Stunning New Design of the TECNO Spark 50 5G
+4
+Xiaomi's 100W GaN USB-A Charger Bundle announced at Just $25
+5
+Thermalright Unveils New Compact Cooler With 5 Heatpipes and Clean Black Design
+6
+Xiaomi 17T Leak: Big Batteries, Fast Charging, and Flagship Power Incoming
+More Articles
+Loading
+Previous article
+Infinix GT 50 Pro Leak Reveals Bold Design Shift and Advanced Cooling System
+Next article
+OnePlus 16 Leaks Point to 200MP Periscope Camera and a Massive Spec Overhaul
+Write a comment
+About Us
+•
+Contact Us
+•
+Privacy Policy
+•
+Cookie Policy
+•
+Editorial Guidelines
+•
+Affiliate and Brand Relationship Disclosure
+•
+How do we rate
+Accredited technology blog dedicated to providing breaking news, expert reviews and original content related to mobile tech and EV industry, smartphones, gadgets and IoT.
+Powered by Newsifier

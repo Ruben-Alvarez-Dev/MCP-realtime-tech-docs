@@ -1,0 +1,306 @@
+Document Center
+ All Products 
+Search
+ Document Center 
+ Alibaba Cloud Model Studio 
+ User Guide (Models) 
+ Inference 
+ Omni-modal 
+ Non-real-time (Qwen-Omni) 
+all-products-head 
+ This Product 
+ This Product 
+ All Products 
+ Alibaba Cloud Model Studio:Qwen-Omni 
+ Qwen-Omni accepts text combined with a single additional modality, image, audio, or video, and generates text or speech responses. It delivers human-like voices and supports multilingual and dialect-based speech output. You can use it for content moderation, text creation, visual recognition, and audio-video interaction assistants. Supported regions: Singapore, Beijing . Use the API key for your region. Getting started Prerequisites You have configured the API key and set the API key as an environment variable . The Qwen-Omni model supports only OpenAI-compatible invocation. Install the latest SDK : OpenAI Python SDK 1.52.0 or later, Node.js SDK 4.68.0 or later. This example sends a text prompt to the Qwen-Omni API and returns a streaming response with both text and audio. Python import os
+import base64
+import soundfile as sf
+import numpy as np
+from openai import OpenAI
+# 1. Initialize the client
+client = OpenAI(
+ api_key=os.getenv("DASHSCOPE_API_KEY"), # Confirm that the environment variable is set
+ base_url="https://dashscope-intl.aliyuncs.com/compatible-mode/v1",
+)
+# 2. Send the request
+try:
+ completion = client.chat.completions.create(
+ model="qwen3.5-omni-plus",
+ messages=[{"role": "user", "content": "Who are you?"}],
+ modalities=["text", "audio"], # Specify text and audio output
+ audio={"voice": "Tina", "format": "wav"},
+ stream=True, # Must be set to True
+ stream_options={"include_usage": True},
+ )
+ # 3. Process the streaming response and decode the audio
+ print("Model response:")
+ audio_base64_string = ""
+ for chunk in completion:
+ # Process the text part
+ if chunk.choices and chunk.choices[0].delta.content:
+ print(chunk.choices[0].delta.content, end="")
+ # Collect the audio part
+ if chunk.choices and hasattr(chunk.choices[0].delta, "audio") and chunk.choices[0].delta.audio:
+ audio_base64_string += chunk.choices[0].delta.audio.get("data", "")
+ # 4. Save the audio file
+ if audio_base64_string:
+ wav_bytes = base64.b64decode(audio_base64_string)
+ audio_np = np.frombuffer(wav_bytes, dtype=np.int16)
+ sf.write("audio_assistant.wav", audio_np, samplerate=24000)
+ print("\nAudio file saved to: audio_assistant.wav")
+except Exception as e:
+ print(f"Request failed: {e}") Node.js // Before running:
+// 1. Ensure Node.js version >= 14 is installed.
+// 2. Run: npm install openai wav
+import OpenAI from "openai";
+import { createWriteStream } from 'node:fs';
+import { Writer } from 'wav';
+// Convert a Base64 string and save it as a WAV audio file
+async function convertAudio(audioString, audioPath) {
+ try {
+ // Decode the Base64 string into a Buffer
+ const wavBuffer = Buffer.from(audioString, 'base64');
+ // Create a WAV file write stream
+ const writer = new Writer({
+ sampleRate: 24000, // Sample rate
+ channels: 1, // Mono
+ bitDepth: 16 // 16-bit depth
+ });
+ // Create an output file stream and establish a pipe connection
+ const outputStream = createWriteStream(audioPath);
+ writer.pipe(outputStream);
+ // Write PCM data and end writing
+ writer.write(wavBuffer);
+ writer.end();
+ // Wait for the file to finish writing
+ await new Promise((resolve, reject) => {
+ outputStream.on('finish', resolve);
+ outputStream.on('error', reject);
+ });
+ // Add extra wait time to ensure audio integrity
+ await new Promise(resolve => setTimeout(resolve, 800));
+ console.log(`\nAudio file saved to: ${audioPath}`);
+ } catch (error) {
+ console.error('Error during audio processing:', error);
+ }
+}
+// 1. Initialize the client
+const openai = new OpenAI(
+ {
+ // If no environment variable is set, replace the next line with your Alibaba Cloud Model Studio API key: apiKey: "sk-xxx"
+ apiKey: process.env.DASHSCOPE_API_KEY,
+ // The following URL is for the Singapore region. If you use a model in the Beijing region, replace it with: https://dashscope.aliyuncs.com/compatible-mode/v1
+ baseURL: "https://dashscope-intl.aliyuncs.com/compatible-mode/v1"
+ }
+);
+// 2. Send the request
+const completion = await openai.chat.completions.create({
+ model: "qwen3.5-omni-plus", 
+ messages: [
+ {
+ "role": "user",
+ "content": "Who are you?"
+ }],
+ stream: true,
+ stream_options: {
+ include_usage: true
+ },
+ modalities: ["text", "audio"],
+ audio: { voice: "Tina", format: "wav" }
+});
+let audioString = "";
+console.log("Model response:")
+// 3. Process the streaming response and decode the audio
+for await (const chunk of completion) {
+ if (Array.isArray(chunk.choices) && chunk.choices.length > 0) {
+ // Process text content
+ if (chunk.choices[0].delta.content) {
+ process.stdout.write(chunk.choices[0].delta.content);
+ }
+ // Process audio content
+ if (chunk.choices[0].delta.audio) {
+ if (chunk.choices[0].delta.audio["data"]) {
+ audioString += chunk.choices[0].delta.audio["data"];
+ }
+ }
+ }
+}
+// 4. Save the audio file
+convertAudio(audioString, "audio_assistant.wav"); curl # ======= Important note =======
+# API keys differ between Singapore and Beijing regions. Get an API key: https://www.alibabacloud.com/help/zh/model-studio/get-api-key
+# The following URL is for the Singapore region. If you use a model in the Beijing region, replace it with: https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions
+# === Delete this comment before execution ===
+curl -X POST https://dashscope-intl.aliyuncs.com/compatible-mode/v1/chat/completions \
+-H "Authorization: Bearer $DASHSCOPE_API_KEY" \
+-H "Content-Type: application/json" \
+-d '{
+ "model": "qwen3.5-omni-plus",
+ "messages": [
+ {
+ "role": "user",
+ "content": "Who are you?"
+ }
+ ],
+ "stream":true,
+ "stream_options":{
+ "include_usage":true
+ },
+ "modalities":["text","audio"],
+ "audio":{"voice":"Tina","format":"wav"}
+}' Response After you run the Python or Node.js code, the text response appears in the console and an audio file named audio_assistant.wav is saved in the same directory as your code file. Model response:
+I am a large language model developed by Alibaba Cloud. My name is Qwen. How can I help you? Running HTTP code returns text and Base64-encoded audio data directly in the audio field. data: {"choices":[{"delta":{"content":"I"},"finish_reason":null,"index":0,"logprobs":null}],"object":"chat.completion.chunk","usage":null,"created":1757647879,"system_fingerprint":null,"model":"qwen3.5-omni-plus","id":"chatcmpl-a68eca3b-c67e-4666-a72f-73c0b4919860"}
+data: {"choices":[{"delta":{"content":"am"},"finish_reason":null,"index":0,"logprobs":null}],"object":"chat.completion.chunk","usage":null,"created":1757647879,"system_fingerprint":null,"model":"qwen3.5-omni-plus","id":"chatcmpl-a68eca3b-c67e-4666-a72f-73c0b4919860"}
+......
+data: {"choices":[{"delta":{"audio":{"data":"/v8AAAAAAAAAAAAAAA...","expires_at":1757647879,"id":"audio_a68eca3b-c67e-4666-a72f-73c0b4919860"}},"finish_reason":null,"index":0,"logprobs":null}],"object":"chat.completion.chunk","usage":null,"created":1757647879,"system_fingerprint":null,"model":"qwen3.5-omni-plus","id":"chatcmpl-a68eca3b-c67e-4666-a72f-73c0b4919860"}
+data: {"choices":[{"finish_reason":"stop","delta":{"content":""},"index":0,"logprobs":null}],"object":"chat.completion.chunk","usage":null,"created":1764763585,"system_fingerprint":null,"model":"qwen3.5-omni-plus","id":"chatcmpl-e8c82e9e-073e-4289-a786-a20eb444ac9c"}
+data: {"choices":[],"object":"chat.completion.chunk","usage":{"prompt_tokens":207,"completion_tokens":103,"total_tokens":310,"completion_tokens_details":{"audio_tokens":83,"text_tokens":20},"prompt_tokens_details":{"text_tokens":207}},"created":1757940330,"system_fingerprint":null,"model":"qwen3.5-omni-plus","id":"chatcmpl-9cdd5a26-f9e9-4eff-9dcc-93a878165afc"} Model selection Note Qwen3.5-Omni is in preview. Model invocation is temporarily free, but tool calling still incurs fees, see Billing details . Qwen3.5-Omni series: Best for long video analysis, meeting summaries, caption generation, content moderation, and audio-video interaction. Input limits: Up to 3 hours of audio or 1 hour of video Audio control: Supports adjusting volume, speaking rate, and emotion via instructions Visual capability: Matches Qwen3.5's level. Understands images, speech, ambient sounds, and other multimodal information Qwen3-Omni-Flash series: Best for short video analysis and cost-sensitive scenarios. Input limits: Audio-video input under 150 seconds Thinking mode: The only Qwen-Omni series that supports thinking mode Qwen-Omni-Turbo series This series is no longer updated and has limited features. Migrate to the Qwen3.5-Omni or Qwen3-Omni-Flash series. Series Audio-video description Deep thinking Web search Input languages Output audio languages Supported voices Qwen3.5-Omni Latest-generation omni-modal model Strong Not supported Supported 113 92 languages and 21 dialects Languages: Chinese, English, German, French, Italian, Czech, Indonesian, Thai, Korean, Polish, Japanese, Vietnamese, Finnish, Portuguese, Spanish, Dutch, Russian, Malay, Catalan, Swedish, Turkish, Ukrainian, Romanian, Slovak, Danish, Icelandic, Norwegian (Bokmål), Macedonian, Greek, Hungarian, Galician, Filipino, Croatian, Bosnian, Slovenian, Bulgarian, Kazakh, Belarusian, Latvian, Estonian, Azerbaijani, Uyghur, Swahili, Hindi, Esperanto, Kyrgyz, Tajik, Cebuano, Afrikaans, Arabic, Lithuanian, Javanese, Bengali, Persian, Hebrew, Punjabi, Gujarati, Mongolian, Asturian, Kannada, Marathi, Interlingua, Malayalam, Maltese, Norwegian Nynorsk, Telugu, Urdu, Georgian, Basque, Tamil, Odia, Serbian, Maori Dialects: Northeastern Mandarin, Guizhou dialect, Cantonese, Henan dialect, Hong Kong Cantonese, Shanghainese, Shaanxi dialect, Tianjin dialect, Taiwanese Hokkien, Yunnan dialect, Anhui dialect, Fujian dialect, Gansu dialect, Guangdong dialect, Hubei dialect, Hunan dialect, Jiangxi dialect, Shandong dialect, Shanxi dialect, Sichuan dialect, Guangxi dialect, Hainan dialect, Chongqing dialect, Changsha dialect, Hangzhou dialect, Hefei dialect, Yinchuan dialect, Zhengzhou dialect, Shenyang dialect, Wenzhou dialect, Wuhan dialect, Kunming dialect, Taiyuan dialect, Nanchang dialect, Jinan dialect, Lanzhou dialect, Nanjing dialect, Hakka, Southern Min 36 29 languages and 7 dialects Languages: Chinese, English, German, Italian, Portuguese, Spanish, Japanese, Korean, French, Russian, Thai, Indonesian, Arabic, Vietnamese, Turkish, Finnish, Polish, Hindi, Dutch, Czech, Urdu, Tagalog, Swedish, Danish, Hebrew, Icelandic, Malay, Norwegian, Persian Dialects: Sichuan dialect, Beijing dialect, Tianjin dialect, Nanjing dialect, Shaanxi dialect, Cantonese, Southern Min 55 Qwen3-Omni-Flash Hybrid thinking model Weaker Supported Not supported 19 10 languages and 9 dialects Languages: Chinese, English, French, German, Russian, Italian, Spanish, Portuguese, Japanese, Korean Dialects: Sichuan dialect, Shanghainese, Cantonese, Southern Min, Shaanxi dialect, Nanjing dialect, Tianjin dialect, Beijing dialect 19 10 languages and 9 dialects Languages: Chinese, English, French, German, Russian, Italian, Spanish, Portuguese, Japanese, Korean Dialects: Sichuanese, Shanghainese, Cantonese, Hokkien, Shaanxi dialect, Nanjing dialect, Tianjin dialect, Beijing dialect 17 to 49 Varies by version Qwen-Omni-Turbo No longer updated None Not supported Not supported Chinese, English Chinese, English 4 For model names, context windows, pricing, and snapshot versions, see the Model list . For rate limits, see Rate limiting . Model performance Audio and video content analysis Generate a comprehensive timestamped description of this video. 00:00.000 – 00:02.500 A rain-soaked city street fills the widescreen frame. Long-exposure photography creates streaks of red and blue car lights on wet pavement. A solitary man in a dark knee-length trench coat and light shirt with a tie walks toward the camera along the right sidewalk. Raindrops cling to his shoulders and hair; each step makes a muffled plop on damp concrete. A low, ominous electronic hum underscores ambient sounds, while steady rain crackles all around. Colorful graffiti covers the brick wall beside him, and neon signs glow in the distance—one clearly displays orange-red cursive script reading "Nice," while another vertical sign shows the letters "AT" at its bottom. ...... 00:12.300 – 00:14.533 The camera tilts down. Inside a flashlight beam, a yellowed, aged single sheet lies in a shallow puddle, edges charred and corners curled. Inked paragraphs cover most of its surface, but moisture and scorch marks make the text unreadable. The man kneels, extending gloved fingers toward the document; ripples spread outward as his hand nears. Sirens peak then begin to fade slightly, while the ambient hum remains steady. The scene freezes just before the trembling paper is touched, ending the clip. Only partial timestamps shown. Multidialect understanding Describe the vocal characteristics, emotional state, and full lyrics for singers in different Chinese dialects. This audio features rap performances by singers from various regions of China, showcasing rich dialect diversity. Below are detailed descriptions of each singer's vocal traits, emotional state, and corresponding lyrics: Hangzhou dialect (Wu) Vocal traits: The male singer's voice is soft and gentle, with the distinctive smoothness and warmth of Wu dialect. His intonation rises and falls gently, and his rhythm is light and quick, creating a relaxed storytelling effect. Emotional state: Relaxed, comfortable, and full of everyday life. He describes Hangzhou's slow-paced lifestyle and urban changes, expressing affection for his hometown and reflection on modern development. Overall, he feels cozy and familiar. Lyrics: > Hangzhou dialect, listen up! Our culture includes local erhua pronunciation. > Like flowers blooming by West Lake, no cultural survey needed—we understand it best. > Outsiders don't get it. "Ge," "lao'er," "fen'er," "ya'er"—can outsiders tell them apart? > Let's go! Transport is fast—subways everywhere. We'll check it out. > Welcoming Southeast Asia and Thailand, watching "Thirteen Ta" shows. Proud of our city, direct in personality. > So you only came for the "bridge-crossing" experience, and because the flavor is different, you're not returning? Only partial results shown. Lyric caption generation Transcribe the song lyrics and provide timestamps for each line in this format:[00:00:15,020 --> 00:00:28,085] : When you walk through a storm, hold your head up high.[00:00:28,085 --> 00:00:40,200] And don't be afraid of the dark....... [00:00:12,680 --> 00:00:16,960] Cat thread sways past moonlight on trees. [00:00:18,400 --> 00:00:22,800] Radiators hum 1998 chart hits. [00:00:24.160 → 00:00:28.080] Time parts the mist-like heat waves. [00:00:28,920 --> 00:00:33,000] Neon from the screen shines on my nose bridge. ...... [00:03:16,720 --> 00:03:21,680] We nestle in the softest ring of the tree trunk. [00:03:22,400 --> 00:03:27,000] Breathing turns residual warmth into honey-sugar. [00:03:28,160 --> 00:03:33,200] The sofa sinks into cloud-fluff shape. [00:03:34,000 --> 00:03:38,800] Every pore soaks in sunshine. [00:04:09,000 --> 00:04:10,020] (End) Only partial results shown. Audio-video programming Usage Streaming output All requests to Qwen-Omni must set stream=True . Model configuration Configure parameters, prompts, and audio-video lengths based on your use case to balance cost, speed, and quality. Audio-video understanding Use case Recommended video length Recommended prompt Recommended max_pixels Fast review, low cost ≤60 minutes Simple prompt within 50 words 230,400 Content extraction (long video segmentation) ≤60 minutes 921,600–2,073,600 Standard analysis (short video tagging) ≤4 minutes Use the structured prompt below Recommended prompt Provide a detailed description of the video.
+It should explicitly include three sections: 
+1. A structured chronological storyline of **every noticeable audio and visual details**
+2. A structured list of all visible text. For each text element, include start timestamp, end timestamp, the exact text content, the appearance characteristics. If no text appears, explicitly state so.
+3. A structured speech-to-text transcription, include speaker（Corresponding to the character or voice‑over in Section 1, including their accent and tone）, exact spoken content, start timestamp, end timestamp, and speaking state (prosody, emotion, and style). If no speech appears, explicitly state so.
+Aside from these three required sections, you are free to organize any additional content in any way you find helpful. This additional content can include global information about the entire video or localized information about specific moments. You may choose the topic of this extra content freely.
+Output Format:
+```
+## Storyline
+<xx:xx.xxx> - <xx:xx.xxx>
+<an unstructured long paragraph in natural language describing what happened during this period, blending both audio and video details.>
+<xx:xx.xxx> - <xx:xx.xxx>
+<an unstructured long paragraph in natural language describing what happened during this period, blending both audio and video details.>
+<xx:xx.xxx> - <xx:xx.xxx>
+<an unstructured long paragraph in natural language describing what happened during this period, blending both audio and video details.>
+...
+## Visible Text
+<xx:xx.xxx> - <xx:xx.xxx>
+"<element>": <appearance>
+"<element>": <appearance>
+<xx:xx.xxx> - <xx:xx.xxx>
+"<element>": <appearance>
+"<element>": <appearance>
+"<element>": <appearance>
+<xx:xx.xxx> - <xx:xx.xxx>
+"<element>": <appearance>
+...
+## Speakers and Transcript
+Speaker profiles:
+<speaker> - <profile>
+<speaker> - <profile>
+<speaker> - <profile>
+...
+<xx:xx.xxx> - <xx:xx.xxx>
+Speaker: <speaker>
+State: <description>
+Content: "<content>"
+<xx:xx.xxx> - <xx:xx.xxx>
+Speaker: <speaker>
+State: <description>
+Content: "<content>"
+<xx:xx.xxx> - <xx:xx.xxx>
+Speaker: <speaker>
+State: <description>
+Content: "<content>"
+...
+## <another section>
+<paragraphs>
+## <another section>
+<paragraphs>
+...
+``` 921,600–2,073,600 Fine-grained analysis (multiple speakers/complex scenes) ≤2 minutes 2,073,600 Note For fine-grained descriptions of long videos, segment them first. Audio understanding Balance cost and quality by controlling audio length and prompt complexity. Use case Recommended audio length Recommended prompt Fast review, low cost ≤60 minutes Simple prompt within 50 words Content extraction (segment long audio) ≤60 minutes Standard analysis (audio tagging) ≤2 minutes Use a structured prompt Structured prompt Provide a detailed description of the audio.
+It should explicitly include two sections: 
+1. A structured chronological storyline of **every noticeable audio details**
+2. A structured speech-to-text transcription, include speaker（Corresponding to the character or voice‑over in Section 1, including their accent and tone）, exact spoken content, start timestamp, end timestamp, and speaking state (prosody, emotion, and style). If no speech appears, explicitly state so.
+Aside from these two required components, you are free to organize any additional content in any way you find helpful. This additional content can include global information about the entire audio or localized information about specific moments. You may choose the topic of this extra content freely.
+Output Format:
+```
+## Storyline
+<xx:xx.xxx> - <xx:xx.xxx>
+<an unstructured long paragraph in natural language describing what happened during this period, blending both audio details.>
+<xx:xx.xxx> - <xx:xx.xxx>
+<an unstructured long paragraph in natural language describing what happened during this period, blending both audio details.>
+<xx:xx.xxx> - <xx:xx.xxx>
+<an unstructured long paragraph in natural language describing what happened during this period, blending both audio details.>
+...
+...
+## Speakers and Transcript
+Speaker profiles:
+<speaker> - <profile>
+<speaker> - <profile>
+<speaker> - <profile>
+...
+<xx:xx.xxx> - <xx:xx.xxx>
+Speaker: <speaker>
+State: <description>
+Content: "<content>"
+<xx:xx.xxx> - <xx:xx.xxx>
+Speaker: <speaker>
+State: <description>
+Content: "<content>"
+<xx:xx.xxx> - <xx:xx.xxx>
+Speaker: <speaker>
+State: <description>
+Content: "<content>"
+...
+## <another section>
+<paragraphs>
+## <another section>
+<paragraphs>
+...
+``` Fine-grained analysis (multiple speakers/complex scenes) ≤1 minute Note For fine-grained descriptions of long audio, segment it first. Multimodal input Video and text input Provide video as an image list or a video file (with audio support) . Video file (supports audio in the video) Number of files: Qwen3.5-Omni series: Up to 512 files using public URLs; up to 250 files using Base64 encoding. Qwen3-Omni-Flash and Qwen-Omni-Turbo series: Only one file allowed. File size: Qwen3.5-Omni: Up to 2 GB, up to 1 hour duration. Qwen3-Omni-Flash: Up to 256 MB, up to 150 seconds duration. Qwen-Omni-Turbo: Up to 150 MB, up to 40 seconds duration. File formats: MP4, AVI, MKV, MOV, FLV, WMV, etc. Visual and audio information in the video file are billed separately. OpenAI compatible Python import os
+from openai import OpenAI
+client = OpenAI(
+ # API keys differ between Singapore and Beijing regions. Get an API key: https://www.alibabacloud.com/help/zh/model-studio/get-api-key
+ api_key=os.getenv("DASHSCOPE_API_KEY"),
+ # The following URL is for the Singapore region. If you use a model in the Beijing region, replace it with: https://dashscope.aliyuncs.com/compatible-mode/v1
+ base_url="https://dashscope-intl.aliyuncs.com/compatible-mode/v1",
+)
+completion = client.chat.completions.create(
+ model="qwen3.5-omni-plus", # For Qwen3-Omni-Flash, run in non-thinking mode.
+ messages=[
+ {
+ "role": "user",
+ "content": [
+ {
+ "type": "video_url",
+ "video_url": {
+ "url": "https://help-static-aliyun-doc.aliyuncs.com/file-manage-files/zh-CN/20241115/cqqkru/1.mp4"
+ },
+ },
+ {"type": "text", "text": "What is the video about?"},
+ ],
+ },
+ ],
+ # Set the output modality. Two options are currently supported: ["text","audio"] and ["text"]
+ modalities=["text", "audio"],
+ audio={"voice": "Tina", "format": "wav"},
+ # stream must be set to True, otherwise an error occurs.
+ stream=True,
+ stream_options={"include_usage": True},
+)
+for chunk in completion:
+ if chunk.choices:
+ print(chunk.choices[0].delta)
+ else:
+ print(chunk.usage) Node.js import OpenAI from "openai";
+const openai = new OpenAI(
+ {
+ // API keys differ between Singapore and Beijing regions. Get an API key: https://www.alibabacloud.com/help/zh/model-studio/get-api-key
+ apiKey: process.env.DASHSCOPE_API_KEY,
+ // The following URL is for the Singapore region. If you use a model in the Beijing region, replace it with: https://dashscope.aliyuncs.com/compatible-mode/v1
+ baseURL: "https://dashscope-intl.aliyuncs.com/compatible-mode/v1"
+ }
+);
+const completion = await openai.chat.completions.create({
+ model: "qwen3.5-omni-plus", // For Qwen3-Omni-Flash, run in non-thinking mode.
+ messages: [
+ {
+ "role": "user",
+ "content": [{
+ "type": "video_url",
+ "video_url": { "url": "https://help-static-aliyun-doc.aliyuncs.com/file-manage-files/zh-CN/20241115/cqqkru/1.mp4" },
+ },
+ { "type": "text", "text": "What is the video about?" }]
+ }],
+ stream: true,
+ stream_options: {
+ include_usage: true
+ },
+ modalities: ["text", "audio"],

@@ -1,0 +1,604 @@
+[
+  {
+    "path": "qwen/00-OVERVIEW.md",
+    "size": 5525,
+    "preview": "# Qwen Real-Time Ecosystem — Complete Guide  > Last updated: April 2026   > Source: Alibaba Cloud Model Studio (DashScope)  ## Table of Contents 1. [What is Qwen Real-Time?](#what-is-qwen-real-time) 2",
+    "product": "qwen",
+    "category": "root"
+  },
+  {
+    "path": "qwen/04-QWEN3-TTS.md",
+    "size": 5651,
+    "preview": "# Qwen3-TTS — Voice Design & Voice Cloning API  > Source: https://qwen.ai/blog?id=qwen3-tts-vc-voicedesign  ## Overview  Qwen3-TTS offers two powerful capabilities via the Qwen API: 1. **Voice Design",
+    "product": "qwen",
+    "category": "root"
+  },
+  {
+    "path": "qwen/05-CLIENT-SERVER-EVENTS.md",
+    "size": 3760,
+    "preview": "# Qwen Real-Time Client & Server Events Reference  > Source: https://www.alibabacloud.com/help/en/model-studio/client-events  ## Client Events (You Send)  ### session.update Configure the session. **S",
+    "product": "qwen",
+    "category": "root"
+  },
+  {
+    "path": "qwen/06-VOICES.md",
+    "size": 4253,
+    "preview": "# Qwen Real-Time Voice List  ## Qwen3.5-Omni-Realtime Voices (55 total)  ### Multilingual Voices (47) | Voice | Description | |---|---| | **Tina** | Warm milk tea — sweet and cozy, sharp when solving",
+    "product": "qwen",
+    "category": "root"
+  },
+  {
+    "path": "qwen/02-OFFLINE-HTTP-API.md",
+    "size": 4129,
+    "preview": "# Qwen-Omni Offline HTTP API  > Source: https://www.alibabacloud.com/help/en/model-studio/qwen-omni  ## Endpoint (OpenAI Compatible)  | Region | Base URL | |---|---| | International (Singapore) | `htt",
+    "product": "qwen",
+    "category": "root"
+  },
+  {
+    "path": "qwen/07-CODE-EXAMPLES.md",
+    "size": 7998,
+    "preview": "# Qwen Real-Time — Complete Code Examples  ## 1. VAD Mode Voice Call (Python + DashScope SDK)  ```python # Dependencies: dashscope >= 1.23.9, pyaudio import os, base64, time, pyaudio from dashscope.au",
+    "product": "qwen",
+    "category": "root"
+  },
+  {
+    "path": "qwen/03-QWEN35-OMNI-BLOG.md",
+    "size": 2625,
+    "preview": "# Qwen3.5-Omni Architecture & Benchmarks  > Source: https://qwen.ai/blog?id=qwen3.5-omni  ## Architecture: Thinker-Talker  Qwen3.5-Omni uses a **Thinker-Talker** architecture: - **Thinker** — Processe",
+    "product": "qwen",
+    "category": "root"
+  },
+  {
+    "path": "qwen/01-REALTIME-WEBSOCKET-API.md",
+    "size": 7980,
+    "preview": "# Qwen Real-Time WebSocket API — Complete Reference  > Source: https://www.alibabacloud.com/help/en/model-studio/realtime  ## Connection  ### WebSocket Endpoints | Region | URL | |---|---| | Internati",
+    "product": "qwen",
+    "category": "root"
+  },
+  {
+    "path": "qwen/models/huggingface-clean.txt",
+    "size": 5039,
+    "preview": "Qwen (Qwen) Hugging Face Models Datasets Spaces Buckets new Docs Enterprise Pricing Log In Sign Up Qwen Team company https://qwen.ai/ alibaba_qwen QwenLM Activity Feed Follow 82,168 AI & ML interests",
+    "product": "qwen",
+    "category": "models"
+  },
+  {
+    "path": "qwen/models/model-list-clean.txt",
+    "size": 204891,
+    "preview": "Supported Models and Capabilities Overview - Model Studio - Alibaba Cloud - Alibaba Cloud Model Studio - Alibaba Cloud Documentation Center Document Center All Products Search Document Center Alibaba",
+    "product": "qwen",
+    "category": "models"
+  },
+  {
+    "path": "qwen/models/pricing-guide-clean.txt",
+    "size": 9321,
+    "preview": "Qwen API Pricing Guide 2026: Max Performance on a Budget We use essential cookies to make our site work. With your consent, we may also use non-essential cookies to improve user experience and analyze",
+    "product": "qwen",
+    "category": "models"
+  },
+  {
+    "path": "qwen/models/getting-started-clean.txt",
+    "size": 204891,
+    "preview": "Supported Models and Capabilities Overview - Model Studio - Alibaba Cloud - Alibaba Cloud Model Studio - Alibaba Cloud Documentation Center Document Center All Products Search Document Center Alibaba",
+    "product": "qwen",
+    "category": "models"
+  },
+  {
+    "path": "qwen/models/openrouter-qwen.txt",
+    "size": 51802,
+    "preview": "Qwen Access 73 Qwen models through the OpenRouter unified API including Qwen3.5 Plus 2026-04-20, Qwen3.6 Flash, and Qwen3.6 35B A3B . Compare pricing, context windows, benchmarks, and capabilities bet",
+    "product": "qwen",
+    "category": "models"
+  },
+  {
+    "path": "qwen/models/openrouter-qwen-clean.txt",
+    "size": 52288,
+    "preview": "Qwen API and Models | OpenRouter OpenRouter Search / Models Chat Rankings Apps Enterprise Pricing Docs Skip to content OpenRouter / Fusion Models Chat Rankings Apps Enterprise Pricing Docs OpenRouter",
+    "product": "qwen",
+    "category": "models"
+  },
+  {
+    "path": "qwen/models/huggingface-all.txt",
+    "size": 30663,
+    "preview": "Title: Qwen (Qwen)  URL Source: https://huggingface.co/Qwen  Markdown Content: # Qwen (Qwen)  [![Image 1: Hugging Face's logo](https://huggingface.co/front/assets/huggingface_logo-noborder.svg)Hugging",
+    "product": "qwen",
+    "category": "models"
+  },
+  {
+    "path": "qwen/models/all-models-full.txt",
+    "size": 263029,
+    "preview": "官方文档 输入文档关键字查找   阿里云百炼提供了丰富多样的模型选择，它集成了千问系列大模型和第三方大模型，涵盖文本、图像、音视频等不同模态。 旗舰模型 中国内地 服务部署范围为 中国内地 时，模型推理计算资源仅限于中国内地；静态数据存储于您所选的地域。该部署范围支持的地域：华北 2（北京）。 旗舰模型 Qwen3.6-Max-Preview 适合复杂任务，能力最强 Qwen3.6-Plus 效果",
+    "product": "qwen",
+    "category": "models"
+  },
+  {
+    "path": "qwen/realtime/omni-realtime.txt",
+    "size": 16341,
+    "preview": "Document Center  All Products  Search  Document Center   Alibaba Cloud Model Studio   User Guide (Models)   Inference   Omni-modal   Real-time (Qwen-Omni-Realtime)  all-products-head   This Product",
+    "product": "qwen",
+    "category": "realtime"
+  },
+  {
+    "path": "qwen/realtime/realtime-jina2.txt",
+    "size": 5413,
+    "preview": "Title:   URL Source: https://help.aliyun.com/zh/model-studio/developer-reference/qwen-realtime-api  Markdown Content: # 404错误页-阿里云帮助中心  [](https://www.aliyun.com/)  [大模型](https://www.aliyun.com/produc",
+    "product": "qwen",
+    "category": "realtime"
+  },
+  {
+    "path": "qwen/speech-recognition/asr-websocket.txt",
+    "size": 9911,
+    "preview": "Document Center  All Products  Search  Document Center   Alibaba Cloud Model Studio   User Guide (Models)   Inference   Speech recognition   Real-time speech recognition (Qwen)  all-products-head   Th",
+    "product": "qwen",
+    "category": "speech-recognition"
+  },
+  {
+    "path": "qwen/speech-recognition/qwen3-asr-github.txt",
+    "size": 30750,
+    "preview": "Skip to content   You signed in with another tab or window. Reload to refresh your session.   You signed out in another tab or window. Reload to refresh your session.   You switched accounts on anothe",
+    "product": "qwen",
+    "category": "speech-recognition"
+  },
+  {
+    "path": "qwen/speech-recognition/qwen3-asr-clean.txt",
+    "size": 60115,
+    "preview": "# Qwen3-ASR  <br>  <p align=\"center\">     <img src=\"https://qianwen-res.oss-cn-beijing.aliyuncs.com/Qwen3-ASR-Repo/logo.png\" width=\"400\"/> <p>  <p align=\"center\"> &nbsp&nbsp🤗 <a href=\"https://huggingf",
+    "product": "qwen",
+    "category": "speech-recognition"
+  },
+  {
+    "path": "qwen/speech-recognition/asr-realtime.txt",
+    "size": 3525,
+    "preview": "Document Center  All Products  Search  Document Center   Alibaba Cloud Model Studio   API Reference (Models)   Speech recognition   Real-time speech recognition (Qwen-ASR-Realtime)   Interaction flow",
+    "product": "qwen",
+    "category": "speech-recognition"
+  },
+  {
+    "path": "qwen/tts-cosyvoice/cosyvoice-jina2.txt",
+    "size": 52924,
+    "preview": "Title: Python SDK  URL Source: https://help.aliyun.com/zh/model-studio/developer-reference/cosyvoice-python-api  Markdown Content: **用户指南：**关于模型介绍和选型建议请参见[实时语音合成-CosyVoice/Sambert](https://help.aliyun",
+    "product": "qwen",
+    "category": "tts-cosyvoice"
+  },
+  {
+    "path": "qwen/tts-cosyvoice/cosyvoice-websocket.txt",
+    "size": 10370,
+    "preview": "Document Center  All Products  Search  Document Center   Alibaba Cloud Model Studio   API Reference (Models)   Speech synthesis   Real-time speech synthesis (CosyVoice)   WebSocket API  all-products-h",
+    "product": "qwen",
+    "category": "tts-cosyvoice"
+  },
+  {
+    "path": "qwen/tts-cosyvoice/cosyvoice-python-api.txt",
+    "size": 52255,
+    "preview": "大模型 产品 解决方案 权益 定价 云市场 伙伴 服务 了解阿里云 文档 备案 控制台 注册 登录 官方文档 大模型服务平台百炼 用户指南（模型） 用户指南（应用） API参考（模型） API参考（应用） 输入文档关键字查找 准备工作 获取API Key 配置API Key到环境变量 安装SDK 对话 千问 DeepSeek-阿里云 DeepSeek-硅基流动 DeepSeek-快手万擎 Kimi",
+    "product": "qwen",
+    "category": "tts-cosyvoice"
+  },
+  {
+    "path": "qwen/tts-cosyvoice/cosyvoice-github-clean.txt",
+    "size": 12650,
+    "preview": "![SVG Banners](https://svg-banners.vercel.app/api?type=origin&text1=CosyVoice🤠&text2=Text-to-Speech%20💖%20Large%20Language%20Model&width=800&height=210)  ## 👉🏻 CosyVoice 👈🏻  **Fun-CosyVoice 3.0**: [De",
+    "product": "qwen",
+    "category": "tts-cosyvoice"
+  },
+  {
+    "path": "qwen/tts-cosyvoice/cosyvoice-python-full.txt",
+    "size": 42659,
+    "preview": "官方文档 输入文档关键字查找   本文介绍语音合成 CosyVoice Python SDK 的参数和接口细节。 用户指南： 关于模型介绍和选型建议请参见 实时语音合成-CosyVoice/Sambert 。 前提条件 已开通服务并 获取 API Key 。请 配置 API Key 到环境变量 ，而非硬编码在代码中，防范因代码泄露导致的安全风险。 说明 当您需要为第三方应用或用户提供临时访问权限，",
+    "product": "qwen",
+    "category": "tts-cosyvoice"
+  },
+  {
+    "path": "qwen/tts-cosyvoice/cosyvoice2-api.txt",
+    "size": 24358,
+    "preview": "Document Center  All Products  Search  Document Center   Platform For AI   Use Cases   Image, video, and voice generation   CosyVoice 2.0   API reference  all-products-head   This Product   This Produ",
+    "product": "qwen",
+    "category": "tts-cosyvoice"
+  },
+  {
+    "path": "qwen/tts-cosyvoice/cosyvoice-tts.txt",
+    "size": 10230,
+    "preview": "Document Center  All Products  Search  Document Center   Alibaba Cloud Model Studio   User Guide (Models)   Inference   Speech synthesis   Real-time speech synthesis - CosyVoice  all-products-head   T",
+    "product": "qwen",
+    "category": "tts-cosyvoice"
+  },
+  {
+    "path": "qwen/tts-cosyvoice/lighttts-clean.txt",
+    "size": 11710,
+    "preview": "![Light TTS Banner](asset/light-tts.jpg)  # LightTTS  [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0) [![Docker](https://img.shield",
+    "product": "qwen",
+    "category": "tts-cosyvoice"
+  },
+  {
+    "path": "qwen/omni/qwen-omni.txt",
+    "size": 23303,
+    "preview": "Document Center  All Products  Search  Document Center   Alibaba Cloud Model Studio   User Guide (Models)   Inference   Omni-modal   Non-real-time (Qwen-Omni)  all-products-head   This Product   This",
+    "product": "qwen",
+    "category": "omni"
+  },
+  {
+    "path": "qwen/omni/omni-turbo-jina2.txt",
+    "size": 5411,
+    "preview": "Title:   URL Source: https://help.aliyun.com/zh/model-studio/developer-reference/qwen-omni-turbo  Markdown Content: # 404错误页-阿里云帮助中心  [](https://www.aliyun.com/)  [大模型](https://www.aliyun.com/product/",
+    "product": "qwen",
+    "category": "omni"
+  },
+  {
+    "path": "livekit/llm/llm-overview.txt",
+    "size": 8711,
+    "preview": "Skip to main content Docs GitHub Search Search ⌘ K Sign in with Cloud Introduction Build Agents Agent Frontends Telephony WebRTC Transport Manage & Deploy Reference On this page Overview LiveKit Infer",
+    "product": "livekit",
+    "category": "llm"
+  },
+  {
+    "path": "livekit/llm/llm-overview-clean.txt",
+    "size": 11082,
+    "preview": "Large language models (LLM) overview | LiveKit Documentation Skip to main content Docs Search ⌘ K Sign in with Cloud Introduction Build Agents Agent Frontends Telephony WebRTC Transport Manage & Deplo",
+    "product": "livekit",
+    "category": "llm"
+  },
+  {
+    "path": "livekit/plugins/plugins-list.txt",
+    "size": 4393,
+    "preview": "Skip to content   You signed in with another tab or window. Reload to refresh your session.   You signed out in another tab or window. Reload to refresh your session.   You switched accounts on anothe",
+    "product": "livekit",
+    "category": "plugins"
+  },
+  {
+    "path": "livekit/agents/overview.txt",
+    "size": 8386,
+    "preview": "Skip to main content Docs GitHub Search Search ⌘ K Sign in with Cloud Introduction Build Agents Agent Frontends Telephony WebRTC Transport Manage & Deploy Reference On this page Overview Use cases Fra",
+    "product": "livekit",
+    "category": "agents"
+  },
+  {
+    "path": "livekit/agents/models-overview.txt",
+    "size": 7012,
+    "preview": "Skip to main content Docs GitHub Search Search ⌘ K Sign in with Cloud Introduction Build Agents Agent Frontends Telephony WebRTC Transport Manage & Deploy Reference On this page Overview LiveKit Infer",
+    "product": "livekit",
+    "category": "agents"
+  },
+  {
+    "path": "livekit/agents/github-readme-clean.txt",
+    "size": 17974,
+    "preview": "<!--BEGIN_BANNER_IMAGE-->  <picture>   <source media=\"(prefers-color-scheme: dark)\" srcset=\"/.github/banner_dark.png\">   <source media=\"(prefers-color-scheme: light)\" srcset=\"/.github/banner_light.png",
+    "product": "livekit",
+    "category": "agents"
+  },
+  {
+    "path": "livekit/agents/models-overview-clean.txt",
+    "size": 9227,
+    "preview": "Models overview | LiveKit Documentation Skip to main content Docs Search ⌘ K Sign in with Cloud Introduction Build Agents Agent Frontends Telephony WebRTC Transport Manage & Deploy Reference Get Start",
+    "product": "livekit",
+    "category": "agents"
+  },
+  {
+    "path": "livekit/agents/overview-clean.txt",
+    "size": 10608,
+    "preview": "Introduction | LiveKit Documentation Skip to main content Docs Search ⌘ K Sign in with Cloud Introduction Build Agents Agent Frontends Telephony WebRTC Transport Manage & Deploy Reference Get Started",
+    "product": "livekit",
+    "category": "agents"
+  },
+  {
+    "path": "livekit/realtime/openai-realtime.txt",
+    "size": 4533,
+    "preview": "Skip to main content Docs GitHub Search Search ⌘ K Sign in with Cloud Introduction Build Agents Agent Frontends Telephony WebRTC Transport Manage & Deploy Reference On this page OpenAI ecosystem suppo",
+    "product": "livekit",
+    "category": "realtime"
+  },
+  {
+    "path": "livekit/realtime/openai-realtime-clean.txt",
+    "size": 6912,
+    "preview": "OpenAI and LiveKit | LiveKit Documentation Skip to main content Docs Search ⌘ K Sign in with Cloud Introduction Build Agents Agent Frontends Telephony WebRTC Transport Manage & Deploy Reference Get St",
+    "product": "livekit",
+    "category": "realtime"
+  },
+  {
+    "path": "livekit/stt/stt-overview-clean.txt",
+    "size": 17416,
+    "preview": "Speech-to-text (STT) models overview | LiveKit Documentation Skip to main content Docs Search ⌘ K Sign in with Cloud Introduction Build Agents Agent Frontends Telephony WebRTC Transport Manage & Deplo",
+    "product": "livekit",
+    "category": "stt"
+  },
+  {
+    "path": "livekit/stt/stt-overview.txt",
+    "size": 15035,
+    "preview": "Skip to main content Docs GitHub Search Search ⌘ K Sign in with Cloud Introduction Build Agents Agent Frontends Telephony WebRTC Transport Manage & Deploy Reference On this page Overview LiveKit Infer",
+    "product": "livekit",
+    "category": "stt"
+  },
+  {
+    "path": "xiaomi-mimo/00-OVERVIEW.md",
+    "size": 6837,
+    "preview": "# Xiaomi MiMo Real-Time Ecosystem — Complete Guide  > Last updated: April 2026   > Source: Xiaomi MiMo Platform, GitHub, HuggingFace  ## Table of Contents 1. [MiMo Ecosystem Overview](#mimo-ecosystem-",
+    "product": "xiaomi-mimo",
+    "category": "root"
+  },
+  {
+    "path": "xiaomi-mimo/quick-start.txt",
+    "size": 4069,
+    "preview": "Xiaomi MiMo-V2.5 Series Launches Public Beta! Token Plan users now enjoy preferential rate, 20% off off-peak calls, save up to 30% with monthly auto-renewal, and get a FULL RESET of your used Credits.",
+    "product": "xiaomi-mimo",
+    "category": "root"
+  },
+  {
+    "path": "xiaomi-mimo/home.txt",
+    "size": 4069,
+    "preview": "Xiaomi MiMo-V2.5 Series Launches Public Beta! Token Plan users now enjoy preferential rate, 20% off off-peak calls, save up to 30% with monthly auto-renewal, and get a FULL RESET of your used Credits.",
+    "product": "xiaomi-mimo",
+    "category": "root"
+  },
+  {
+    "path": "xiaomi-mimo/07-CODE-EXAMPLES.md",
+    "size": 5277,
+    "preview": "# MiMo Complete Code Examples  ## 1. Basic Chat (Python — OpenAI SDK)  ```python from openai import OpenAI  # Standard pay-per-use client = OpenAI(     api_key=\"sk-xxx\",     base_url=\"https://api.xiao",
+    "product": "xiaomi-mimo",
+    "category": "root"
+  },
+  {
+    "path": "xiaomi-mimo/04-MIMO-V25-PRO.md",
+    "size": 1572,
+    "preview": "# MiMo-V2.5-Pro — Flagship Agent Model  > Source: https://mimo.xiaomi.com/mimo-v2-pro  ## Overview MiMo-V2.5-Pro is Xiaomi's flagship model built for real-world agentic workloads — coding, tool-use, a",
+    "product": "xiaomi-mimo",
+    "category": "root"
+  },
+  {
+    "path": "xiaomi-mimo/03-MIMO-V2-FLASH.md",
+    "size": 1792,
+    "preview": "# MiMo-V2-Flash — Efficient Reasoning Model  > Source: https://github.com/xiaomimimo/MiMo-V2-Flash  ## Overview 309B total / 15B active params MoE model. Hybrid attention + MTP for efficient reasoning",
+    "product": "xiaomi-mimo",
+    "category": "root"
+  },
+  {
+    "path": "xiaomi-mimo/01-API-REFERENCE.md",
+    "size": 6795,
+    "preview": "# MiMo API Complete Reference  > Source: https://platform.xiaomimimo.com/docs/api/chat/openai-api  ## Endpoints  ### Standard Pay-Per-Use ``` POST https://api.xiaomimimo.com/v1/chat/completions ```  #",
+    "product": "xiaomi-mimo",
+    "category": "root"
+  },
+  {
+    "path": "xiaomi-mimo/05-TOKEN-PLAN.md",
+    "size": 4121,
+    "preview": "# MiMo Token Plan — Complete Guide  > Source: Xiaomi MiMo Platform, Twitter/X announcements, community reports  ## What is the Token Plan?  The **MiMo Token Plan** is a subscription service that provi",
+    "product": "xiaomi-mimo",
+    "category": "root"
+  },
+  {
+    "path": "xiaomi-mimo/02-MIMO-V25-ARCHITECTURE.md",
+    "size": 4292,
+    "preview": "# MiMo-V2.5 Architecture — Technical Deep Dive  > Source: HuggingFace, Xiaomi MiMo Platform  ## Architecture Overview  MiMo-V2.5 is a **native omnimodal MoE model** built on MiMo-V2-Flash backbone wit",
+    "product": "xiaomi-mimo",
+    "category": "root"
+  },
+  {
+    "path": "xiaomi-mimo/06-MIMO-TTS.md",
+    "size": 1878,
+    "preview": "# MiMo TTS — Voice Synthesis Models  > Source: Xiaomi MiMo Platform, mimo.mi.com  ## Overview The MiMo-V2.5-TTS series provides voice synthesis capabilities built for the Agent era.  ---  ## Capabilit",
+    "product": "xiaomi-mimo",
+    "category": "root"
+  },
+  {
+    "path": "xiaomi-mimo/models/mimo-home.txt",
+    "size": 2156,
+    "preview": "You need to enable JavaScript to run this app. Xiaomi MiMo API Xiaomi MiMo Studio Blog Xiaomi MiMo-V2.5 Series Models Brand New Release Token Plan now supports monthly/annual subscriptions, fully cove",
+    "product": "xiaomi-mimo",
+    "category": "models"
+  },
+  {
+    "path": "xiaomi-mimo/models/all-models-jina.txt",
+    "size": 4069,
+    "preview": "Xiaomi MiMo-V2.5 Series Launches Public Beta! Token Plan users now enjoy preferential rate, 20% off off-peak calls, save up to 30% with monthly auto-renewal, and get a FULL RESET of your used Credits.",
+    "product": "xiaomi-mimo",
+    "category": "models"
+  },
+  {
+    "path": "xiaomi-mimo/models/mimo-v2-flash-github.txt",
+    "size": 28532,
+    "preview": "Title: GitHub - XiaomiMiMo/MiMo-V2-Flash: MiMo-V2-Flash: Efficient Reasoning, Coding, and Agentic Foundation Model  URL Source: https://github.com/XiaomiMiMo/MiMo-V2-Flash  Markdown Content: # GitHub",
+    "product": "xiaomi-mimo",
+    "category": "models"
+  },
+  {
+    "path": "xiaomi-mimo/models/mimo-7b.txt",
+    "size": 22983,
+    "preview": "system\\\\n' }}\\n {%- if messages[0]['role'] == 'system' %}\\n {{- messages[0]['content'] }}\\n {%- else %}\\n {{- 'You are a helpful assistant.' }}\\n {%- endif %}\\n {{- \\\"\\\\n\\\\n# Tools\\\\n\\\\nYou may call o",
+    "product": "xiaomi-mimo",
+    "category": "models"
+  },
+  {
+    "path": "xiaomi-mimo/models/openclaw-readme-clean.txt",
+    "size": 86044,
+    "preview": "# 🦞 OpenClaw — Personal AI Assistant  <p align=\"center\">     <picture>         <source media=\"(prefers-color-scheme: light)\" srcset=\"https://raw.githubusercontent.com/openclaw/openclaw/main/docs/asset",
+    "product": "xiaomi-mimo",
+    "category": "models"
+  },
+  {
+    "path": "xiaomi-mimo/models/mimo-vl-7b-clean.txt",
+    "size": 5814,
+    "preview": "XiaomiMiMo/MiMo-VL-7B-RL · Hugging Face Hugging Face Models Datasets Spaces Buckets new Docs Enterprise Pricing Log In Sign Up XiaomiMiMo / MiMo-VL-7B-RL like 169 Follow Xiaomi MiMo 2.48k Image-Text-t",
+    "product": "xiaomi-mimo",
+    "category": "models"
+  },
+  {
+    "path": "xiaomi-mimo/models/mimo-vl-7b.txt",
+    "size": 28122,
+    "preview": "system\\nYou are MiMo, an AI assistant developed by Xiaomi.<|im_end|>\\n{% endif %}<|im_start|>{{ message['role'] }}\\n{% if message['content'] is string %}{{ message['content'] }}<|im_end|>\\n{% else %}{",
+    "product": "xiaomi-mimo",
+    "category": "models"
+  },
+  {
+    "path": "xiaomi-mimo/models/mimo-7b-clean.txt",
+    "size": 11003,
+    "preview": "XiaomiMiMo/MiMo-7B-RL · Hugging Face Hugging Face Models Datasets Spaces Buckets new Docs Enterprise Pricing Log In Sign Up XiaomiMiMo / MiMo-7B-RL like 276 Follow Xiaomi MiMo 2.48k Text Generation Tr",
+    "product": "xiaomi-mimo",
+    "category": "models"
+  },
+  {
+    "path": "xiaomi-mimo/models/mimo-v2.5-complete-guide.txt",
+    "size": 18575,
+    "preview": "Title: Xiaomi MiMo-V2.5 Complete Guide: The 310B Parameter Monster Challenging GPT-5 and Claude 🚀  URL Source: https://agmazon.com/blog/articles/technology/202604/mimo-v2-5-complete-guide-en.html  Pub",
+    "product": "xiaomi-mimo",
+    "category": "models"
+  },
+  {
+    "path": "xiaomi-mimo/models/aimlapi-mimo-v2.5-pro.txt",
+    "size": 14033,
+    "preview": "Title: mimo-v2.5-pro | AI/ML API Documentation  URL Source: https://docs.aimlapi.com/api-references/text-models-llm/xiaomi/mimo-v2.5-pro  Markdown Content: ⌘Ctrl k  1.   [API REFERENCES](https://docs.",
+    "product": "xiaomi-mimo",
+    "category": "models"
+  },
+  {
+    "path": "xiaomi-mimo/models/openrouter-v2-pro.txt",
+    "size": 2547,
+    "preview": "Xiaomi: MiMo-V2-Pro xiaomi / mimo-v2-pro Chat Compare Released Mar 18, 2026 1,048,576 context $ 1 /M input tokens $ 3 /M output tokens MiMo-V2-Pro is Xiaomi&#x27;s flagship foundation model, featuring",
+    "product": "xiaomi-mimo",
+    "category": "models"
+  },
+  {
+    "path": "xiaomi-mimo/tts/v2-tts-release.txt",
+    "size": 7344,
+    "preview": "Xiaomi MiMo-V2.5 Series Launches Public Beta! Token Plan users now enjoy preferential rate, 20% off off-peak calls, save up to 30% with monthly auto-renewal, and get a FULL RESET of your used Credits.",
+    "product": "xiaomi-mimo",
+    "category": "tts"
+  },
+  {
+    "path": "xiaomi-mimo/tts/tts-api-jina.txt",
+    "size": 4069,
+    "preview": "Xiaomi MiMo-V2.5 Series Launches Public Beta! Token Plan users now enjoy preferential rate, 20% off off-peak calls, save up to 30% with monthly auto-renewal, and get a FULL RESET of your used Credits.",
+    "product": "xiaomi-mimo",
+    "category": "tts"
+  },
+  {
+    "path": "xiaomi-mimo/tts/speech-synthesis-guide.txt",
+    "size": 10118,
+    "preview": "Xiaomi MiMo-V2.5 Series Launches Public Beta! Token Plan users now enjoy preferential rate, 20% off off-peak calls, save up to 30% with monthly auto-renewal, and get a FULL RESET of your used Credits.",
+    "product": "xiaomi-mimo",
+    "category": "tts"
+  },
+  {
+    "path": "xiaomi-mimo/tts/speech-synthesis-jina.txt",
+    "size": 10118,
+    "preview": "Xiaomi MiMo-V2.5 Series Launches Public Beta! Token Plan users now enjoy preferential rate, 20% off off-peak calls, save up to 30% with monthly auto-renewal, and get a FULL RESET of your used Credits.",
+    "product": "xiaomi-mimo",
+    "category": "tts"
+  },
+  {
+    "path": "xiaomi-mimo/tts/medium-tts-integration.txt",
+    "size": 521,
+    "preview": "Title: mimo-v2-tts: Xiaomi’s Expressive Voice API  URL Source: https://medium.com/@gptproto.official/mimo-v2-tts-xiaomis-expressive-voice-api-b08896dc72d2  Published Time: 2026-04-16T07:02:44Z  Warnin",
+    "product": "xiaomi-mimo",
+    "category": "tts"
+  },
+  {
+    "path": "xiaomi-mimo/api/web-search-tool-jina.txt",
+    "size": 7352,
+    "preview": "Title: Xiaomi MiMo Api Open Platform - Token Plan Global Launch  URL Source: https://platform.xiaomimimo.com/docs/usage-guide/tool-calling/web-search  Markdown Content: # Xiaomi MiMo API Open Platform",
+    "product": "xiaomi-mimo",
+    "category": "api"
+  },
+  {
+    "path": "xiaomi-mimo/api/api-overview-jina.txt",
+    "size": 4069,
+    "preview": "Xiaomi MiMo-V2.5 Series Launches Public Beta! Token Plan users now enjoy preferential rate, 20% off off-peak calls, save up to 30% with monthly auto-renewal, and get a FULL RESET of your used Credits.",
+    "product": "xiaomi-mimo",
+    "category": "api"
+  },
+  {
+    "path": "xiaomi-mimo/pricing/pricing-jina.txt",
+    "size": 7164,
+    "preview": "Xiaomi MiMo-V2.5 Series Launches Public Beta! Token Plan users now enjoy preferential rate, 20% off off-peak calls, save up to 30% with monthly auto-renewal, and get a FULL RESET of your used Credits.",
+    "product": "xiaomi-mimo",
+    "category": "pricing"
+  },
+  {
+    "path": "xiaomi-mimo/pricing/billing-jina.txt",
+    "size": 13217,
+    "preview": "Title: Xiaomi MiMo Api Open Platform - Token Plan Global Launch  URL Source: https://platform.xiaomimimo.com/docs/news/billing  Markdown Content: # Xiaomi MiMo API Open Platform  Xiaomi MiMo-V2.5 Seri",
+    "product": "xiaomi-mimo",
+    "category": "pricing"
+  },
+  {
+    "path": "xiaomi-mimo/pricing/billing.txt",
+    "size": 4069,
+    "preview": "Xiaomi MiMo-V2.5 Series Launches Public Beta! Token Plan users now enjoy preferential rate, 20% off off-peak calls, save up to 30% with monthly auto-renewal, and get a FULL RESET of your used Credits.",
+    "product": "xiaomi-mimo",
+    "category": "pricing"
+  },
+  {
+    "path": "xiaomi-mimo/omni/openrouter-omni-api.txt",
+    "size": 2741,
+    "preview": "Title: Xiaomi: MiMo-V2-Omni – API Quickstart  URL Source: https://openrouter.ai/xiaomi/mimo-v2-omni-20260318/api  Markdown Content: Note: The free trial period for OpenClaw users of MiMo v2 Pro and Om",
+    "product": "xiaomi-mimo",
+    "category": "omni"
+  },
+  {
+    "path": "xiaomi-mimo/omni/v2-omni-release.txt",
+    "size": 10039,
+    "preview": "Xiaomi MiMo-V2.5 Series Launches Public Beta! Token Plan users now enjoy preferential rate, 20% off off-peak calls, save up to 30% with monthly auto-renewal, and get a FULL RESET of your used Credits.",
+    "product": "xiaomi-mimo",
+    "category": "omni"
+  },
+  {
+    "path": "xiaomi-mimo/omni/openrouter-omni.txt",
+    "size": 2123,
+    "preview": "Xiaomi: MiMo-V2-Omni xiaomi / mimo-v2-omni Chat Compare Released Mar 18, 2026 262,144 context $ 0.40 /M input tokens $ 2 /M output tokens MiMo-V2-Omni is a frontier omni-modal model that natively proc",
+    "product": "xiaomi-mimo",
+    "category": "omni"
+  },
+  {
+    "path": "xiaomi-mimo/omni/v2-omni-jina.txt",
+    "size": 10039,
+    "preview": "Xiaomi MiMo-V2.5 Series Launches Public Beta! Token Plan users now enjoy preferential rate, 20% off off-peak calls, save up to 30% with monthly auto-renewal, and get a FULL RESET of your used Credits.",
+    "product": "xiaomi-mimo",
+    "category": "omni"
+  },
+  {
+    "path": "xiaomi-mimo/omni/audio-understanding.txt",
+    "size": 4069,
+    "preview": "Xiaomi MiMo-V2.5 Series Launches Public Beta! Token Plan users now enjoy preferential rate, 20% off off-peak calls, save up to 30% with monthly auto-renewal, and get a FULL RESET of your used Credits.",
+    "product": "xiaomi-mimo",
+    "category": "omni"
+  },
+  {
+    "path": "xiaomi-mimo/omni/api-guide.txt",
+    "size": 3618,
+    "preview": "Skip to content   The most dramatic AI event of March 2026: An anonymous model dubbed \"Hunter Alpha\" quietly appeared on OpenRouter, burning through 500 billion tokens a week with performance rivaling",
+    "product": "xiaomi-mimo",
+    "category": "omni"
+  },
+  {
+    "path": "xiaomi-mimo/omni/realtime-guide.txt",
+    "size": 4069,
+    "preview": "Xiaomi MiMo-V2.5 Series Launches Public Beta! Token Plan users now enjoy preferential rate, 20% off off-peak calls, save up to 30% with monthly auto-renewal, and get a FULL RESET of your used Credits.",
+    "product": "xiaomi-mimo",
+    "category": "omni"
+  },
+  {
+    "path": "xiaomi-mimo/omni/api-guide-clean.txt",
+    "size": 4049,
+    "preview": "Comprehensive Analysis of Xiaomi MiMo V2 Pro and Omni: How Powerful Is the Trillion-Parameter Model That Once Masqueraded as DeepSeek V4 - Apiyi.com Blog Skip to content Apiyi.com Blog Best AI API Rou",
+    "product": "xiaomi-mimo",
+    "category": "omni"
+  },
+  {
+    "path": "xiaomi-mimo/omni/realtime-api-jina.txt",
+    "size": 4069,
+    "preview": "Xiaomi MiMo-V2.5 Series Launches Public Beta! Token Plan users now enjoy preferential rate, 20% off off-peak calls, save up to 30% with monthly auto-renewal, and get a FULL RESET of your used Credits.",
+    "product": "xiaomi-mimo",
+    "category": "omni"
+  },
+  {
+    "path": "xiaomi-mimo/omni/openrouter-omni-clean.txt",
+    "size": 2633,
+    "preview": "MiMo-V2-Omni - API Pricing & Providers | OpenRouter OpenRouter Search / Models Chat Rankings Apps Enterprise Pricing Docs Skip to content OpenRouter / Fusion Models Chat Rankings Apps Enterprise Prici",
+    "product": "xiaomi-mimo",
+    "category": "omni"
+  },
+  {
+    "path": "xiaomi-mimo/token-plan/gizchina-pricing-clean.txt",
+    "size": 4709,
+    "preview": "Xiaomi Launches MiMo Large Model With TokenPlan Pricing — Starting at 39 Yuan Home Phones Wearables Tablets Reviews How To's | Guides Contact Us Xiaomi Launches MiMo Large Model With TokenPlan Pricing",
+    "product": "xiaomi-mimo",
+    "category": "token-plan"
+  }
+]

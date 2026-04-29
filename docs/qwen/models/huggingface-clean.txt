@@ -1,0 +1,523 @@
+Qwen (Qwen)
+Hugging Face
+Models
+Datasets
+Spaces
+Buckets
+new
+Docs
+Enterprise
+Pricing
+Log In
+Sign Up
+Qwen
+Team
+company
+https://qwen.ai/
+alibaba_qwen
+QwenLM
+Activity Feed
+Follow
+82,168
+AI & ML interests
+None defined yet.
+Recent Activity
+VoyagerXHF
+updated
+a model
+5 days ago
+Qwen/Qwen3.5-27B
+VoyagerXHF
+updated
+a model
+5 days ago
+Qwen/Qwen3.6-35B-A3B
+VoyagerXHF
+updated
+a model
+5 days ago
+Qwen/Qwen3.6-35B-A3B-FP8
+View all activity
+Papers
+OccuBench: Evaluating AI Agents on Real-World Professional Tasks via Language World Models
+RealChart2Code: Advancing Chart-to-Code Generation with Real Data and Multi-Task Evaluation
+View all Papers
+Team members
+191
++157
++144
++123
++113
++93
+Organization Card
+Community
+About org cards
+Welcome to Qwen 👋
+This is the organization of Qwen, which refers to the large language model family built by Alibaba Cloud. 
+In this organization, we continuously release large language models (LLM), large multimodal models (LMM), and other AGI-related projects. 
+Feel free to visit
+Qwen Chat
+and enjoy our latest models!
+Collections
+31
+Qwen3.6
+Qwen/Qwen3.6-35B-A3B
+Image-Text-to-Text
+•
+36B
+•
+Updated
+5 days ago
+•
+1.51M
+•
+•
+1.5k
+Qwen/Qwen3.6-35B-A3B-FP8
+Image-Text-to-Text
+•
+36B
+•
+Updated
+5 days ago
+•
+1.47M
+•
+190
+Qwen/Qwen3.6-27B
+Image-Text-to-Text
+•
+28B
+•
+Updated
+5 days ago
+•
+509k
+•
+981
+Qwen/Qwen3.6-27B-FP8
+Image-Text-to-Text
+•
+28B
+•
+Updated
+5 days ago
+•
+745k
+•
+162
+Qwen3.5
+Qwen/Qwen3.5-397B-A17B
+Image-Text-to-Text
+•
+403B
+•
+Updated
+5 days ago
+•
+399k
+•
+•
+1.48k
+Qwen/Qwen3.5-397B-A17B-FP8
+Image-Text-to-Text
+•
+403B
+•
+Updated
+5 days ago
+•
+1.33M
+•
+165
+Qwen/Qwen3.5-122B-A10B
+Image-Text-to-Text
+•
+125B
+•
+Updated
+5 days ago
+•
+1.12M
+•
+•
+530
+Qwen/Qwen3.5-122B-A10B-FP8
+Image-Text-to-Text
+•
+125B
+•
+Updated
+5 days ago
+•
+626k
+•
+94
+Qwen3.6
+Qwen/Qwen3.6-35B-A3B
+Image-Text-to-Text
+•
+36B
+•
+Updated
+5 days ago
+•
+1.51M
+•
+•
+1.5k
+Qwen/Qwen3.6-35B-A3B-FP8
+Image-Text-to-Text
+•
+36B
+•
+Updated
+5 days ago
+•
+1.47M
+•
+190
+Qwen/Qwen3.6-27B
+Image-Text-to-Text
+•
+28B
+•
+Updated
+5 days ago
+•
+509k
+•
+981
+Qwen/Qwen3.6-27B-FP8
+Image-Text-to-Text
+•
+28B
+•
+Updated
+5 days ago
+•
+745k
+•
+162
+Qwen3.5
+Qwen/Qwen3.5-397B-A17B
+Image-Text-to-Text
+•
+403B
+•
+Updated
+5 days ago
+•
+399k
+•
+•
+1.48k
+Qwen/Qwen3.5-397B-A17B-FP8
+Image-Text-to-Text
+•
+403B
+•
+Updated
+5 days ago
+•
+1.33M
+•
+165
+Qwen/Qwen3.5-122B-A10B
+Image-Text-to-Text
+•
+125B
+•
+Updated
+5 days ago
+•
+1.12M
+•
+•
+530
+Qwen/Qwen3.5-122B-A10B-FP8
+Image-Text-to-Text
+•
+125B
+•
+Updated
+5 days ago
+•
+626k
+•
+94
+View 31 collections
+spaces
+32
+Sort: 
+		Recently updated
+Running
+Agents
+137
+Qwen3.5 Omni Offline Demo
+🌍
+Chat with a multimodal AI using text, images, audio, or video
+Qwen
+30 days ago
+Running
+Agents
+69
+Qwen3.5 Omni Online Demo
+📚
+Chat with a multimodal AI using text, image, audio, or video
+Qwen
+30 days ago
+Running
+on
+Zero
+Agents
+Featured
+135
+Qwen3-ASR Demo
+🎙
+Transcribe audio to text with multi-language timestamps
+Qwen
+Mar 3
+Running
+on
+Zero
+Agents
+Featured
+1.91k
+Qwen3-TTS Demo
+🎙
+Generate speech audio from text with custom or cloned voices
+Qwen
+Feb 16
+Running
+on
+Zero
+Agents
+Featured
+365
+Qwen Image 2512
+👀
+Generate high‑quality images from detailed text prompts
+Qwen
+Dec 30, 2025
+Running
+on
+Zero
+Agents
+391
+Qwen Image Edit 2511
+🏆
+Edit images with AI based on your text instructions
+Qwen
+Dec 23, 2025
+View 32
+							Spaces
+models
+437
+Sort: 
+		Recently updated
+Qwen/Qwen3.5-122B-A10B-GPTQ-Int4
+Image-Text-to-Text
+•
+125B
+•
+Updated
+5 days ago
+•
+301k
+•
+38
+Qwen/Qwen3.5-122B-A10B-FP8
+Image-Text-to-Text
+•
+125B
+•
+Updated
+5 days ago
+•
+626k
+•
+94
+Qwen/Qwen3.5-397B-A17B-GPTQ-Int4
+Image-Text-to-Text
+•
+Updated
+5 days ago
+•
+33.4k
+•
+27
+Qwen/Qwen3.5-397B-A17B
+Image-Text-to-Text
+•
+403B
+•
+Updated
+5 days ago
+•
+399k
+•
+•
+1.48k
+Qwen/Qwen3.5-397B-A17B-FP8
+Image-Text-to-Text
+•
+403B
+•
+Updated
+5 days ago
+•
+1.33M
+•
+165
+Qwen/Qwen3.5-122B-A10B
+Image-Text-to-Text
+•
+125B
+•
+Updated
+5 days ago
+•
+1.12M
+•
+•
+530
+Qwen/Qwen3.5-27B
+Image-Text-to-Text
+•
+28B
+•
+Updated
+5 days ago
+•
+3.27M
+•
+•
+962
+Qwen/Qwen3.6-35B-A3B
+Image-Text-to-Text
+•
+36B
+•
+Updated
+5 days ago
+•
+1.51M
+•
+•
+1.5k
+Qwen/Qwen3.6-35B-A3B-FP8
+Image-Text-to-Text
+•
+36B
+•
+Updated
+5 days ago
+•
+1.47M
+•
+190
+Qwen/Qwen3.6-27B-FP8
+Image-Text-to-Text
+•
+28B
+•
+Updated
+5 days ago
+•
+745k
+•
+162
+View 437
+							models
+datasets
+7
+Sort: 
+		Recently updated
+Qwen/DeepPlanning
+Viewer
+•
+Updated
+Mar 3
+•
+2.14k
+•
+639
+•
+203
+Qwen/RationaleRM
+Preview
+•
+Updated
+Feb 5
+•
+597
+•
+27
+Qwen/Qwen3GuardTest
+Viewer
+•
+Updated
+Oct 17, 2025
+•
+2.44k
+•
+1.96k
+•
+32
+Qwen/PolyMath
+Viewer
+•
+Updated
+May 16, 2025
+•
+9k
+•
+7.01k
+•
+45
+Qwen/CodeElo
+Viewer
+•
+Updated
+Jan 5, 2025
+•
+408
+•
+364
+•
+31
+Qwen/ProcessBench
+Viewer
+•
+Updated
+Dec 27, 2024
+•
+3.4k
+•
+6.34k
+•
+59
+Qwen/P-MMEval
+Viewer
+•
+Updated
+Nov 28, 2024
+•
+19.7k
+•
+888
+•
+16
+System theme
+Company
+TOS
+Privacy
+About
+Careers
+Website
+Models
+Datasets
+Spaces
+Pricing
+Docs
