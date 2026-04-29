@@ -1,25 +1,30 @@
 #!/bin/bash
+# Update documentation from Jart-OS sources
 set -e
-SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-DOCS_DIR="${SCRIPT_DIR}/../docs"
-JART_OS="/Users/ruben/Code/Jart-OS"
 
-echo "📚 Updating realtime voice/video documentation..."
-if [ -d "${JART_OS}/qwen-realtime" ]; then
-    echo "  → Copying Qwen docs from Jart-OS..."
-    cp -r "${JART_OS}/qwen-realtime/"* "${DOCS_DIR}/qwen/" 2>/dev/null || true
+BASE="$(cd "$(dirname "$0")/.." && pwd)"
+JART="/Users/$(whoami)/Code/Jart-OS"
+
+echo "Updating docs from Jart-OS..."
+
+if [ -d "$JART/qwen-realtime" ]; then
+  cp $JART/qwen-realtime/*.md $BASE/docs/qwen-realtime-official/ 2>/dev/null || true
+  echo "  Updated qwen-realtime-official"
 fi
-if [ -d "${JART_OS}/xiaomi-realtime" ]; then
-    echo "  → Copying Xiaomi docs from Jart-OS..."
-    cp -r "${JART_OS}/xiaomi-realtime/"* "${DOCS_DIR}/xiaomi-mimo/" 2>/dev/null || true
+
+if [ -d "$JART/xiaomi-realtime" ]; then
+  cp $JART/xiaomi-realtime/*.md $BASE/docs/xiaomi-realtime-official/ 2>/dev/null || true
+  echo "  Updated xiaomi-realtime-official"
 fi
-echo "  → Rebuilding index..."
-cd "${SCRIPT_DIR}/.."
-python3 -c "
+
+# Re-index
+echo "Re-indexing..."
+PYTHONPATH=. python3 -c "
 from src.indexer import DocIndex
 idx = DocIndex('docs')
 entries = idx.build()
 idx.save('index/docs-index.json')
-print(f'   Indexed {len(entries)} files')
+print(f'Indexed {len(entries)} files, {sum(e.size for e in entries)} bytes')
 "
-echo "✅ Documentation updated!"
+
+echo "Done!"

@@ -1,85 +1,102 @@
-# MCP-realtime-tech-docs
+# MCP Realtime Tech Docs
 
-**Live documentation MCP server for realtime voice & video technologies.**
+[![MCP](https://img.shields.io/badge/MCP-Spec%202024--11--05-blue)](https://modelcontextprotocol.io)
+[![FastMCP](https://img.shields.io/badge/FastMCP-3.2+-green)](https://github.com/PrefectHQ/fastmcp)
+[![Python](https://img.shields.io/badge/Python-3.10+-yellow)](https://python.org)
 
-Qwen (Alibaba Cloud) · Xiaomi MiMo · LiveKit — 87+ files, 1.8MB of documentation.
+Live documentation MCP server for realtime voice & video technologies: **Qwen**, **Xiaomi MiMo**, and **LiveKit**.
+
+87+ documents covering TTS, STT, Realtime APIs, voice cloning, WebRTC, agents, and more.
 
 ## Quick Install
 
-```bash
+\`\`\`bash
 curl -sSL https://raw.githubusercontent.com/Ruben-Alvarez-Dev/MCP-realtime-tech-docs/main/scripts/install.sh | bash
-```
+\`\`\`
 
-Or custom path:
-```bash
+Or manually:
+
+\`\`\`bash
 git clone https://github.com/Ruben-Alvarez-Dev/MCP-realtime-tech-docs.git
 cd MCP-realtime-tech-docs
-./scripts/install.sh /your/custom/path
-```
+python3 -m venv .venv && source .venv/bin/activate
+pip install -e .
+\`\`\`
 
-## MCP Configuration
+## Goose Configuration
 
-### Goose Desktop
-```yaml
-realtime-tech-docs:
+Add to \`~/.config/goose/config.yaml\`:
+
+\`\`\`yaml
+mcp-realtime-tech-docs:
   enabled: true
   type: stdio
-  name: realtime-tech-docs
-  command: /Users/MCP-servers/MCP-realtime-tech-docs/.venv/bin/python
-  args: [-m, src.server]
-  env:
-    PYTHONPATH: /Users/MCP-servers/MCP-realtime-tech-docs
+  name: mcp-realtime-tech-docs
+  description: "Live docs for realtime voice & video (Qwen, Xiaomi MiMo, LiveKit)"
+  display_name: "Voice & Video Docs MCP"
+  command: /Users/your-user/MCP-servers/MCP-realtime-tech-docs/.venv/bin/python3
+  args:
+    - -m
+    - src.server
   timeout: 30
-```
+  bundled: false
+  available_tools: []
+\`\`\`
 
-### Claude Desktop
-```json
-{
-  "mcpServers": {
-    "realtime-tech-docs": {
-      "command": "/Users/MCP-servers/MCP-realtime-tech-docs/.venv/bin/python",
-      "args": ["-m", "src.server"],
-      "env": {"PYTHONPATH": "/Users/MCP-servers/MCP-realtime-tech-docs"}
-    }
-  }
-}
-```
-
-## Tools (6)
+## Available Tools
 
 | Tool | Description |
 |------|-------------|
-| search_docs(query, product?) | Search all docs by keywords |
-| get_doc(path) | Read a specific document |
-| get_quickstart(product) | Quickstart guide for a product |
-| compare_products(products[]) | Compare products side-by-side |
-| get_examples(product, feature?) | Get code examples |
-| list_catalog(product?) | Browse full catalog |
+| \`search_docs\` | Search all docs by keywords |
+| \`get_doc\` | Read specific document content |
+| \`get_quickstart\` | Quickstart guide by product |
+| \`compare_products\` | Side-by-side product comparison |
+| \`get_examples\` | Code examples by product & feature |
+| \`list_catalog\` | Full documentation catalog |
 
 ## Products
 
 ### Qwen (Alibaba Cloud)
-- Qwen3.5-Omni Realtime — WebSocket + HTTP, 55+ voices
-- Qwen3-TTS — Voice Design + Voice Cloning
-- Qwen3-ASR — Speech recognition (open source)
-- CosyVoice TTS — Streaming + batch
+- **Qwen3.5-Omni Realtime** — WebSocket + HTTP realtime API
+- **Qwen3-TTS** — Voice Design + Voice Cloning
+- **Qwen3-ASR** — Speech Recognition
+- **CosyVoice** — TTS Engine (v2, v3)
+- Models: Qwen3.5, Qwen3, Qwen-VL, Qwen-Audio
 
 ### Xiaomi MiMo
-- MiMo-V2.5 — Native omnimodal MoE
-- MiMo-V2.5-TTS — Voice synthesis
-- Token Plan — Subscription API (tp- keys)
-  - OpenAI: https://token-plan-ams.xiaomimimo.com/v1
-  - Anthropic: https://token-plan-ams.xiaomimimo.com/anthropic
+- **MiMo-V2.5** — Native omnimodal MoE model
+- **MiMo-V2.5-Pro** — Flagship agent model
+- **MiMo-V2-Flash** — 309B total / 15B active params
+- **MiMo TTS** — Voice synthesis for agents
+- **Token Plan** — Subscription service (tp- keys)
+- Endpoints: \`token-plan-ams.xiaomimimo.com/{v1,anthropic}\`
 
 ### LiveKit
-- Agents — 67+ plugins
-- STT/TTS/LLM/Avatar plugins
-- OpenAI Realtime integration
+- **Agents** — 67+ plugins framework
+- **STT** — Deepgram, AssemblyAI, Cartesia, Soniox...
+- **TTS** — ElevenLabs, Cartesia, PlayHT...
+- **LLM** — OpenAI, Anthropic, Google...
+- **Avatars** — Tavus, Hedra, D-ID...
+- **OpenAI Realtime** integration
 
-## Update Docs
-```bash
+## Documentation Structure
+
+\`\`\`
+docs/
+├── qwen/                    # Scraped from Aliyun, GitHub, HuggingFace
+├── qwen-realtime-official/  # Curated from Jart-OS (8 files)
+├── xiaomi-mimo/             # Scraped from HuggingFace, OpenRouter
+├── xiaomi-realtime-official/# Curated from Jart-OS (8 files)
+└── livekit/                 # Scraped from GitHub, docs.livekit.io
+\`\`\`
+
+## Updating Docs
+
+\`\`\`bash
+# Update from Jart-OS sources
 ./scripts/update-docs.sh
-```
+\`\`\`
 
 ## License
+
 MIT

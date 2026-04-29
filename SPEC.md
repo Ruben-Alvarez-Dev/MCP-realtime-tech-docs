@@ -1,41 +1,54 @@
-# SPEC: MCP-realtime-tech-docs
+# MCP Realtime Tech Docs — Specification
 
 ## Overview
-MCP server providing live documentation for realtime voice & video technologies.
-Built with FastMCP 3.0 (Python) following the Anthropic Model Context Protocol specification.
-
-## Products
-- **Qwen (Alibaba Cloud):** Qwen3.5-Omni Realtime, Qwen3-TTS, Qwen3-ASR, CosyVoice, 55+ voices
-- **Xiaomi MiMo:** V2.5 (omnimodal MoE), V2.5-Pro, V2-Flash, V2.5-TTS, Token Plan (tp- keys)
-- **LiveKit:** Agents (67+ plugins), STT, TTS, LLM, Avatars, OpenAI Realtime
-
-## Tools
-| Tool | Description | Parameters |
-|------|-------------|------------|
-| search_docs | Search by keywords | query, product?, max_results? |
-| get_doc | Read document | path, max_bytes? |
-| get_quickstart | Quickstart guide | product, use_case? |
-| compare_products | Compare products | products[] |
-| get_examples | Code examples | product, feature? |
-| list_catalog | Full catalog | product? |
+An MCP (Model Context Protocol) server providing live documentation for realtime voice and video technologies. Built with FastMCP 3.0 (canonical Anthropic MCP spec).
 
 ## Architecture
-```
-MCP-realtime-tech-docs/
-├── src/server.py          # FastMCP server (6 tools)
-├── src/indexer.py         # Doc index builder/query
-├── docs/                  # Documentation (Qwen, Xiaomi, LiveKit)
-├── index/docs-index.json  # Pre-built search index
-├── tests/                 # Unit tests
-├── scripts/               # Install + update scripts
-├── pyproject.toml
-├── README.md
-└── SPEC.md
-```
+- **Protocol:** MCP (Model Context Protocol) by Anthropic
+- **Framework:** FastMCP 3.2+ (Python)
+- **Transport:** stdio (default), SSE (optional)
+- **Index:** In-memory JSON index, rebuilt on startup if stale
 
-## Protocol
-- MCP Version: 2024-11-05
-- Transport: stdio
-- Framework: FastMCP 3.2+
-- Language: Python 3.10+
-- License: MIT
+## Tools (6)
+
+| Tool | Description | Parameters |
+|------|-------------|------------|
+| search_docs | Search all docs by keywords | query, product?, max_results? |
+| get_doc | Read specific document | path, max_bytes? |
+| get_quickstart | Quickstart guide by product | product, use_case? |
+| compare_products | Side-by-side comparison | products[] |
+| get_examples | Code examples | product, feature? |
+| list_catalog | Full documentation catalog | product? |
+
+## Products Covered
+
+### Qwen (Alibaba Cloud)
+- Qwen3.5-Omni Realtime (WebSocket + HTTP)
+- Qwen3-TTS (Voice Design + Voice Cloning)
+- Qwen3-ASR (Speech Recognition)
+- CosyVoice (TTS Engine)
+- Models: Qwen3.5, Qwen3, Qwen-VL, Qwen-Audio
+
+### Xiaomi MiMo
+- MiMo-V2.5 (native omnimodal MoE)
+- MiMo-V2.5-Pro (flagship agent model)
+- MiMo-V2-Flash (efficient reasoning, 309B/15B active)
+- MiMo TTS (voice synthesis)
+- Token Plan (subscription service, tp- keys)
+- Endpoints: token-plan-ams.xiaomimimo.com/{v1,anthropic}
+
+### LiveKit
+- Agents framework (67+ plugins)
+- STT: Deepgram, AssemblyAI, Cartesia, Soniox, etc.
+- TTS: ElevenLabs, Cartesia, PlayHT, etc.
+- LLM: OpenAI, Anthropic, Google, etc.
+- Avatars: Tavus, Hedra, D-ID, etc.
+- OpenAI Realtime integration
+
+## Documentation Sources
+1. Jart-OS/ (Ruben's curated docs) - PRIMARY source
+2. Scraped from official sites (Aliyun, GitHub, HuggingFace)
+3. OpenRouter model docs
+
+## Installation
+See README.md for the one-line install command.
