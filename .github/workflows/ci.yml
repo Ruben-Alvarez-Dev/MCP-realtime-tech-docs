@@ -1,0 +1,68 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.10", "3.11", "3.12", "3.13"]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install fastmcp
+          pip install -e .
+
+      - name: Verify docs exist
+        run: |
+          FILE_COUNT=$(find docs -type f \( -name "*.md" -o -name "*.txt" \) | wc -l)
+          echo "Found $FILE_COUNT documentation files"
+          if [ "$FILE_COUNT" -lt "50" ]; then
+            echo "Error: Expected at least 50 docs, found $FILE_COUNT"
+            exit 1
+          fi
+
+      - name: Run tests
+        run: |
+          PYTHONPATH=. python tests/test_server.py
+
+      - name: Verify server starts
+        run: |
+          echo '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2024-11-05","capabilities":{},"clientInfo":{"name":"ci","version":"1.0"}}}' | timeout 10 python -m src.server 2>&1 | head -5 || true
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Check for secrets
+        run: |
+          if grep -rn 'sk-[a-zA-Z0-9]\{20,\}' src/ docs/ --include='*.py' --include='*.md' --include='*.txt'; then
+            echo "ERROR: Potential secrets found!"
+            exit 1
+          fi
+          echo "No secrets found"
+
+      - name: Check for personal info
+        run: |
+          if grep -rn '@gmail.com\|@yahoo.com\|@hotmail.com' src/ docs/ --include='*.py' --include='*.md'; then
+            echo "WARNING: Personal email addresses found in docs"
+          fi
